@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "680129268956",
+    "firebase_url": "https://grospick-34d64.firebaseio.com",
+    "project_id": "grospick-34d64",
+    "storage_bucket": "grospick-34d64.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:680129268956:android:f4c9c74436e0f53ae73819",
+        "android_client_info": {
+          "package_name": "com.example.grospick"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "680129268956-e2vkmd3nno8mf5bolgvi3vn7j9fctl4a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.grospick",
+            "certificate_hash": "7eeb14c3dfe08e1cb33ee024270f4f21bdab3267"
+          }
+        },
+        {
+          "client_id": "680129268956-178gk6ep61liafvqbebtdni8g3dpcdd1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1myPmkwqyRkfjUP1sIrLd8VcyQ_22K6Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "680129268956-178gk6ep61liafvqbebtdni8g3dpcdd1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
