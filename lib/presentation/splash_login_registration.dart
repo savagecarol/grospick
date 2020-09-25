@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grospick/presentation/custom/custom_image.dart';
 import 'package:grospick/presentation/custom/input_field.dart';
-import 'package:grospick/utils/default.dart';
+import 'package:grospick/utils/global.dart';
 import 'package:grospick/utils/stringValues.dart';
 import 'package:grospick/utils/styles.dart';
 
@@ -18,11 +18,15 @@ class SplashLoginRegistrationPage extends StatefulWidget {
 
 class _SplashLoginRegistrationPageState
     extends State<SplashLoginRegistrationPage> {
+ 
+ 
   int _currpage = 0;
   final formKey = new GlobalKey<FormState>();
-  String _email = '';
+  String email = '';
   String _password = '';
 
+
+ 
   @override
   void initState() {
     super.initState();
@@ -47,7 +51,7 @@ class _SplashLoginRegistrationPageState
   }
 
   _navigateToHome() {
-    
+
   }
 
   @override
@@ -59,7 +63,7 @@ class _SplashLoginRegistrationPageState
       child: Scaffold(body: Builder(builder: (BuildContext context) {
         if (_currpage == 0) {
           return Container(
-            color: Styles.DEFAULT_COLOR,
+            // color: Styles.P_BACKGROUND_COLOR,
             child: Center(
               child: CustomImage(
                 image: StringValues.APP_LOGO,
@@ -72,6 +76,7 @@ class _SplashLoginRegistrationPageState
 
         if (_currpage == 1) {
           return Container(
+          //  color: Styles.BACKGROUND_COLOR,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
               child: ListView(
@@ -132,24 +137,46 @@ class _SplashLoginRegistrationPageState
                             ),
                           ],
                         ),
-                        SizedBox(height: ScreenUtil.instance.setHeight(45)),
-                        CustomInputField(
-                          hintText: StringValues.EMAIL,
-                        ),
-                        SizedBox(height: ScreenUtil.instance.setHeight(20)),
-                        CustomInputField(hintText: StringValues.PASSWORD),
-                        SizedBox(height: ScreenUtil.instance.setHeight(20)),
-                        InkWell(
-                          onTap: _navigateToHome,
-                          child: Container(
-                              height: ScreenUtil.instance.setHeight(50),
-                              width: ScreenUtil.instance.setWidth(100),
-                              decoration: BoxDecoration(
-                                color: Colors.pink,
-                                borderRadius: new BorderRadius.circular(25.0),
-                              ),
-                              child: Center(child: Text('Login'))),
+
+                        Container(
+                          key:formKey,
+                          child: Form(child: Column(
+                            children: [
+                                   SizedBox(height: ScreenUtil.instance.setHeight(45)),
+                          CustomInputField(
+                            hintText: StringValues.EMAIL,
+                            alertField: StringValues.EMAIL_IS_REQUIRED,
+                            onSaved: (value) {
+                                    email = value;
+                                      },
+                          ),
+                          SizedBox(height: ScreenUtil.instance.setHeight(20)),
+
+
+                          CustomInputField(hintText: StringValues.PASSWORD,
+                          alertField: StringValues.Password_IS_REQUIRED,
+                            onSaved: (value) {
+                                    email = value;
+                                      },
+                          ),
+                          SizedBox(height: ScreenUtil.instance.setHeight(20)),
+                          InkWell(
+                            onTap: _navigateToHome,
+                            child: Container(
+                            height: ScreenUtil.instance.setHeight(50),
+                            width: ScreenUtil.instance.setWidth(100),
+                            decoration: BoxDecoration(
+                              color: Colors.pink,
+                              borderRadius: new BorderRadius.circular(25.0),
+                            ),
+                            child: Center(child: Text('Login'))),
+                          )
+
+
+                            ],
+                          )),
                         )
+
                       ],
                     ),
                   ),

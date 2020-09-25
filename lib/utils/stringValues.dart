@@ -7,7 +7,7 @@ abstract class StringValues {
   static const String GROSSPICK = 'assets/grosspick.png';
 
   // login page
-  static const GET_ANYTHING_ANYWHERE_ANYTIME = 'Get Anything Anywhere Anytime';
+  static const GET_ANYTHING_ANYWHERE_ANYTIME = 'Get Anything,Anywhere,Anytime';
 
   static const ORDER_GROCERY_ESSENTIALS_AND_MORE =
       'Order Grocery, Essentials, & More';
@@ -18,4 +18,6 @@ abstract class StringValues {
 
   static const EMAIL = 'Email';
   static const PASSWORD = 'Password';
+  static const EMAIL_IS_REQUIRED='Email is required.';
+  static const Password_IS_REQUIRED='PassWord is required.';
 }
