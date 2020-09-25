@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:grospick/presentation/splashpage.dart';
+import 'package:grospick/presentation/homepage.dart';
+import 'package:grospick/presentation/splash_login_registration.dart';
 
 
 void main() => runApp(GrosPick());
@@ -16,7 +17,11 @@ class GrosPick extends StatelessWidget {
         
         debugShowCheckedModeBanner: false,
         theme: ThemeData(primaryColor: Colors.white,),
-        home: SplashPage()
+         initialRoute: SplashLoginRegistrationPage.routeNamed,
+                 routes: {
+          SplashLoginRegistrationPage.routeNamed: (BuildContext context) => SplashLoginRegistrationPage(),
+                HomePage.routeNamed: (BuildContext context) => HomePage()
+                    },
               );
           }
         }
