@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:grospick/presentation/homepage.dart';
-import 'package:grospick/presentation/splash_login_registration.dart';
+import 'package:grospick/presentation/splashpage.dart';
+import 'package:grospick/presentation/email_auth_page.dart';
 import 'package:grospick/store/user_store.dart';
 import 'package:provider/provider.dart';
 
@@ -22,10 +22,10 @@ class GrosPick extends StatelessWidget {
           child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(primaryColor: Colors.white,),
-           initialRoute: SplashLoginRegistrationPage.routeNamed,
+           initialRoute: EmailAuthPage .routeNamed,
                    routes: {
-            SplashLoginRegistrationPage.routeNamed: (BuildContext context) => SplashLoginRegistrationPage(),
-                  HomePage.routeNamed: (BuildContext context) => HomePage(),
+            EmailAuthPage .routeNamed: (BuildContext context) => EmailAuthPage(),
+                  SplashPage .routeNamed: (BuildContext context) => SplashPage(),
                   
                       },
                 ),

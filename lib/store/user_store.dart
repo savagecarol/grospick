@@ -1,10 +1,8 @@
-import 'dart:io';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:grospick/models/user.dart';
 import 'package:grospick/utils/global.dart';
 
 import 'package:mobx/mobx.dart';
+part 'user_store.g.dart';
 
 class UserStore = _UserStore with _$UserStore;
 
@@ -27,19 +25,26 @@ abstract class _UserStore with Store {
   @observable
   String verfId;
 
+  @observable
+  bool isCheckUser = false;
+
   @action
-  logIn({
-    String email,
-    String password,
-    Function validateEmail,
-    bool isLogin = false,
-  }) {
-      try {}
-       
-    catch (e) {
-      print(e);
+  logIn(
+      {String email,
+      String password,
+      Function validateEmail,
+      bool isLogin = false,
+      bool isCheckUser = false}) async {
+    try {
       isLoading = true;
-      throw e;}
+      String user = await firebaseAuthService.signIn(email, password);
+      print(user);
+      isLoading = false;
+    } catch (e) {
+      print(e);
+      isLoading = false;
+      throw e;
+    }
   }
 
   // @action
@@ -181,10 +186,10 @@ abstract class _UserStore with Store {
 
   @action
   createUser(User user) async {
-    isLoading = true;
+    isLoading = false;
     // / user = await userService.setUser(user: user);
     setLoggedIn(user);
-    isLoading = false;
+    isLoading = true;
   }
 
   @action

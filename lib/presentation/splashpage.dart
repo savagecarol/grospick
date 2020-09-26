@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
+class SplashPage extends StatefulWidget {
     static const String routeNamed = 'homepage';
   @override
-  _HomePageState createState() => _HomePageState();
+  _SplashPageState createState() => _SplashPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
