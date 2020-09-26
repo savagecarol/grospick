@@ -18,6 +18,5 @@ abstract class StringValues {
 
   static const EMAIL = 'Email';
   static const PASSWORD = 'Password';
-  static const EMAIL_IS_REQUIRED='Email is required.';
-  static const Password_IS_REQUIRED='PassWord is required.';
+
 }

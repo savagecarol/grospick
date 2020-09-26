@@ -132,25 +132,16 @@ mixin _$UserStore on _UserStore, Store {
   final _$logInAsyncAction = AsyncAction('logIn');
 
   @override
-  Future logIn(
-      {String email,
-      String password,
-      Function validateEmail,
-      bool isLogin = false,
-      bool isCheckUser = false}) {
-    return _$logInAsyncAction.run(() => super.logIn(
-        email: email,
-        password: password,
-        validateEmail: validateEmail,
-        isLogin: isLogin,
-        isCheckUser: isCheckUser));
+  Future logIn({String email, String password}) {
+    return _$logInAsyncAction
+        .run(() => super.logIn(email: email, password: password));
   }
 
   final _$createUserAsyncAction = AsyncAction('createUser');
 
   @override
-  Future createUser(User user) {
-    return _$createUserAsyncAction.run(() => super.createUser(user));
+  Future createUser(String email, String password) {
+    return _$createUserAsyncAction.run(() => super.createUser(email, password));
   }
 
   final _$setLoggedInAsyncAction = AsyncAction('setLoggedIn');

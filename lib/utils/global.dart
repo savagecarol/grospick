@@ -4,18 +4,29 @@ import 'package:grospick/services/firebase_auth_service.dart';
 double defaultHeight = 896;
 double defaultWidth = 414;
 
+final FirebaseAuthService firebaseAuthService =
+    FirebaseAuthService.getInstance();
 
-final FirebaseAuthService firebaseAuthService =FirebaseAuthService.getInstance();
+final formKey = new GlobalKey<FormState>();
 
+bool validateAndSave() {
+  final form = formKey.currentState;
+  if (form.validate()) {
+    form.save();
+    return true;
+  } else {
+    return false;
+  }
+}
 
 String validateEmail(String email) {
-  String required = requiredString(email);
-  if (required == null || email.length < 1) return null;
+  if (email == null || email.isEmpty) return 'Required !!!';
   Pattern pattern =
       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
   RegExp regex = new RegExp(pattern);
   return (!regex.hasMatch(email)) ? 'Valid Email!!' : null;
 }
+
 
 String validateName(String name) {
   String required = requiredString(name);
@@ -32,7 +43,6 @@ String validateName(String name) {
 //   RegExp regex = new RegExp(pattern);
 //   return (!regex.hasMatch(phone)) ? 'Valid Phone Number!!' : null;
 // }
-
 
 String requiredString(String value) {
   if (value == null || value.isEmpty) return 'Required !!!';
@@ -59,7 +69,3 @@ Widget showSnackbar(
     return SizedBox();
   }
 }
-
-
-
-

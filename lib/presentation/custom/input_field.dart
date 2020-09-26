@@ -1,73 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:grospick/utils/global.dart';
 
 class CustomInputField extends StatelessWidget {
   final String hintText;
-  final String alertField;
   final Function onSaved;
-  final Function onChanged;
   final TextInputType textInputType;
   final Function validator;
-    final double width;
-
-  CustomInputField({
-    this.hintText,
-    this.width,
-    this.alertField,
-    this.onSaved,
-    this.onChanged,
-    this.textInputType = TextInputType.text,
-    this.validator
-  });
-
-
-//  String _email="";
-//  String _password="";
-
-//  bool validateAndSave()
-//   {
-//     if(form.validate())
-//     {
-//      form.save();
-//      return true ;
-//     }
-//     else
-//     {
-//       return false;
-//     }
-//  }
-
-//  void validateAndSubmit() async
-//  {
-//    if(validateAndSave())
-//    {
-//           try
-//      {
-
-//      }
-
-//       catch(e)
-//       {
-//         print("Error =" +e.toString());
-//       }
-
-//    }
-//  }
+  final double width;
+  final bool obstruct;
+  final String initialValue;
+  CustomInputField(
+      {this.hintText,
+      this.width,
+      this.onSaved,
+      this.textInputType = TextInputType.text,
+      this.validator,
+      this.obstruct = false,
+      this.initialValue
+      
+      });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: width,
       child: TextFormField(
-        keyboardType: TextInputType.text,
-        decoration: new InputDecoration(hintText: hintText,
+        keyboardType: textInputType,
+        decoration: new InputDecoration(
+          hintText: hintText,
           fillColor: Colors.black,
-                  border: new OutlineInputBorder(
-                    borderRadius: new BorderRadius.circular(25.0),
-                    borderSide: new BorderSide(),
-                  ),),
-        validator: validator,
+          border: new OutlineInputBorder(
+            borderRadius: new BorderRadius.circular(25.0),
+            borderSide: new BorderSide(),
+          ),
+        ),
         onSaved: onSaved,
-        onChanged: onChanged,
+        obscureText: obstruct,
+        validator: validator,
+        initialValue: initialValue,
       ),
     );
   }

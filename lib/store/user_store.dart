@@ -29,17 +29,18 @@ abstract class _UserStore with Store {
   bool isCheckUser = false;
 
   @action
-  logIn(
-      {String email,
-      String password,
-      Function validateEmail,
-      bool isLogin = false,
-      bool isCheckUser = false}) async {
+  logIn({
+    String email,
+    String password,
+  }) async {
     try {
       isLoading = true;
       String user = await firebaseAuthService.signIn(email, password);
       print(user);
-      isLoading = false;
+      if (user == null) {
+        isLoading = true;
+      } else
+        isLoading = false;
     } catch (e) {
       print(e);
       isLoading = false;
@@ -185,11 +186,26 @@ abstract class _UserStore with Store {
   // }
 
   @action
-  createUser(User user) async {
-    isLoading = false;
-    // / user = await userService.setUser(user: user);
-    setLoggedIn(user);
-    isLoading = true;
+  createUser(
+    String email,
+    String password,
+  ) async {
+    try {
+      isLoading = true;
+      String user = await firebaseAuthService.signUp(email, password);
+      print(user);
+      if (user == 'error') {
+        print("dfdfd");
+        isCodeSent = false;
+        isLoading = true;
+      } else {
+        isLoading = false;
+        print('dfdfdf');
+      }
+    } catch (e) {
+      print(e);
+      throw e;
+    }
   }
 
   @action
