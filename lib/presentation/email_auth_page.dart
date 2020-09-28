@@ -240,8 +240,8 @@ class _EmailAuthPageState extends State<EmailAuthPage> {
                                           ),
                                           child: Center(
                                               child: (login_signin == true)
-                                                  ? Text('Login')
-                                                  : Text('SignIn'))),
+                                                  ? Text(StringValues.LOGIN)
+                                                  : Text(StringValues.SIGNIN))),
                                     ),
                                   ),
 
@@ -258,7 +258,7 @@ class _EmailAuthPageState extends State<EmailAuthPage> {
                                               login_signin = false;
                                         });
                                       },                                     
-                                      child:( login_signin == true) ? Text('Create An Account ?') : Text('Already have Account ?') )
+                                      child:( login_signin == true) ? Text(StringValues.CREATE_A_NEW_ACCOUNT) : Text(StringValues.ALREADY_HAVE_AN_ACCOUNT) )
                                 ],
                               )),
                         )
