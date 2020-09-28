@@ -1,11 +1,11 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grospick/models/store_observer.dart';
 import 'package:grospick/presentation/custom/custom_image.dart';
 import 'package:grospick/presentation/custom/input_field.dart';
 import 'package:grospick/presentation/splashpage.dart';
+
 import 'package:grospick/store/user_store.dart';
 import 'package:grospick/utils/global.dart';
 import 'package:grospick/utils/stringValues.dart';
@@ -28,12 +28,26 @@ class _EmailAuthPageState extends State<EmailAuthPage> {
   void initState() {
     super.initState();
     if (_currpage == 0) {
+      Future<bool> p = check();
       Timer(Duration(seconds: 5), () {
         setState(() {
-          _currpage = 1;
+          if (p == false) {
+            _currpage = 1;
+          } else {
+            print("jai hind");
+            _navigateToHomePage();
+          }
         });
       });
     }
+  }
+
+  Future<bool> check() async {
+    String k = await firebaseAuthService.getCurrentuser();
+    if (k != null)
+      return true;
+    else
+      return false;
   }
 
   validateAndSubmit() async {
@@ -81,10 +95,8 @@ class _EmailAuthPageState extends State<EmailAuthPage> {
             ),
           );
         }
-
         if (_currpage == 1) {
           return Container(
-            //  color: Styles.BACKGROUND_COLOR,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
               child: ListView(
@@ -181,11 +193,11 @@ class _EmailAuthPageState extends State<EmailAuthPage> {
                                           validateAndSubmit();
                                           if (_do == 1) {
                                             try {
-                                             await userStore.logIn(
+                                              await userStore.logIn(
                                                   email: _email,
-                                                  password: _password
-                                                  );
-                                              if (userStore.isLoading == false) {
+                                                  password: _password);
+                                              if (userStore.isLoading ==
+                                                  false) {
                                                 print(userStore.isLoading);
                                                 _navigateToHomePage();
                                               } else {
@@ -204,23 +216,19 @@ class _EmailAuthPageState extends State<EmailAuthPage> {
                                           validateAndSubmit();
                                           if (_do == 1) {
                                             try {
-                                            await userStore.createUser(
+                                              await userStore.createUser(
                                                   _email, _password);
 
-                                              if (userStore.isLoading ==false)
-                                               {
+                                              if (userStore.isLoading ==
+                                                  false) {
                                                 return showSnackbar(
                                                     'Email Sent to Your Account',
                                                     context);
-                                              }
-
-                                              else {
-                                                
+                                              } else {
                                                 return showSnackbar(
                                                     'Some Problem in Sending Email',
                                                     context);
                                               }
-
                                             } catch (e) {
                                               print(e);
                                               throw e;
@@ -244,21 +252,23 @@ class _EmailAuthPageState extends State<EmailAuthPage> {
                                                   : Text(StringValues.SIGNIN))),
                                     ),
                                   ),
-
-   SizedBox(
+                                  SizedBox(
                                       height:
                                           ScreenUtil.instance.setHeight(20)),
-
                                   InkWell(
                                       onTap: () {
                                         setState(() {
                                           if (login_signin == false)
                                             login_signin = true;
-                                         else if(login_signin==true)
-                                              login_signin = false;
+                                          else if (login_signin == true)
+                                            login_signin = false;
                                         });
-                                      },                                     
-                                      child:( login_signin == true) ? Text(StringValues.CREATE_A_NEW_ACCOUNT) : Text(StringValues.ALREADY_HAVE_AN_ACCOUNT) )
+                                      },
+                                      child: (login_signin == true)
+                                          ? Text(
+                                              StringValues.CREATE_A_NEW_ACCOUNT)
+                                          : Text(StringValues
+                                              .ALREADY_HAVE_AN_ACCOUNT))
                                 ],
                               )),
                         )

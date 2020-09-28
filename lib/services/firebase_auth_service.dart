@@ -45,8 +45,18 @@ class FirebaseAuthService {
   }
 
   Future<String> getCurrentuser() async {
-    FirebaseUser user = await _firebaseAuth.currentUser();
-    return user.uid;
+    try {
+      FirebaseUser user = await _firebaseAuth.currentUser();
+      if (user.uid != null)
+        return user.uid;
+      else {
+        return null;
+      }
+    } catch (e) {
+      print("error in signout");
+      print(e);
+      return null;
+    }
   }
 
   Future<bool> signOut() async {
