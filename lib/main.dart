@@ -25,8 +25,7 @@ class GrosPick extends StatelessWidget {
            initialRoute: EmailAuthPage .routeNamed,
                    routes: {
             EmailAuthPage .routeNamed: (BuildContext context) => EmailAuthPage(),
-                  SplashPage .routeNamed: (BuildContext context) => SplashPage(),
-                  
+                  SplashPage .routeNamed: (BuildContext context) => SplashPage(),    
                       },
                 ),
     );
