@@ -39,8 +39,10 @@ abstract class _UserStore with Store {
       print(user);
       if (user == null) {
         isLoading = true;
-      } else
+      } else {
         isLoading = false;
+        await preferenceService.setUID(user);
+      }
     } catch (e) {
       print(e);
       isLoading = false;
@@ -208,13 +210,13 @@ abstract class _UserStore with Store {
     }
   }
 
-  @action
-  setLoggedIn(User user) async {
-    print("set login user");
-    // await preferenceService.setUID(user.uid);
-    loggedInUser = user;
-    isLoggedIn = true;
-  }
+  // @action
+  // setLoggedIn(User user) async {
+  //   print("set login user");
+
+  //   loggedInUser = user;
+  //   isLoggedIn = true;
+  // }
 
   @action
   checking() async {
@@ -225,6 +227,7 @@ abstract class _UserStore with Store {
       isLoggedIn = false;
     } else {
       isLoggedIn = true;
+      await preferenceService.setUID(user);
     }
   }
 
@@ -236,7 +239,7 @@ abstract class _UserStore with Store {
     loggedInUser = null;
     isCodeSent = false;
     isCodeAutoReceived = false;
-    //  await preferenceService.removeUID();
+    await preferenceService.removeUID();
     isLoading = false;
   }
 }

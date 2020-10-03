@@ -21,3 +21,4 @@ abstract class _User with Store {
   String password;
 
 }
+

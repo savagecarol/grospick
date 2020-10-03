@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:grospick/services/firebase_auth_service.dart';
+import 'package:grospick/services/preference_services.dart';
+import 'package:grospick/services/product_services.dart';
 
 double defaultHeight = 896;
 double defaultWidth = 414;
 
 final FirebaseAuthService firebaseAuthService =
     FirebaseAuthService.getInstance();
+final ProductService productService = ProductService.getInstance();
+final PreferenceService preferenceService = PreferenceService.getInstance();
 
 final formKey = new GlobalKey<FormState>();
 
@@ -26,7 +30,6 @@ String validateEmail(String email) {
   RegExp regex = new RegExp(pattern);
   return (!regex.hasMatch(email)) ? 'Valid Email!!' : null;
 }
-
 
 String validateName(String name) {
   String required = requiredString(name);

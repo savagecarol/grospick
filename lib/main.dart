@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:grospick/presentation/splashpage.dart';
 import 'package:grospick/presentation/email_auth_page.dart';
+import 'package:grospick/store/category_store.dart';
 import 'package:grospick/store/user_store.dart';
 import 'package:provider/provider.dart';
 
@@ -18,6 +19,7 @@ class GrosPick extends StatelessWidget {
     return MultiProvider(
              providers: [
               Provider<UserStore>.value(value: UserStore()),
+              Provider<CategoryStore>.value(value: CategoryStore()),
                   ] ,
           child: MaterialApp(
           debugShowCheckedModeBanner: false,

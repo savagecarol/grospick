@@ -41,7 +41,7 @@ class _SplashPageState extends State<SplashPage> {
         children: <Widget>[
           _getBottomBarItem(index: 0, icontab: Icons.home),
           _getBottomBarItem(index: 1, icontab: Icons.search),
-          _getBottomBarItem(index: 2, icontab: Icons.shopping_cart),
+          _getBottomBarItem(index: 2, icontab: Icons.list),
         ],
       ),
     );

@@ -144,11 +144,11 @@ mixin _$UserStore on _UserStore, Store {
     return _$createUserAsyncAction.run(() => super.createUser(email, password));
   }
 
-  final _$setLoggedInAsyncAction = AsyncAction('setLoggedIn');
+  final _$checkingAsyncAction = AsyncAction('checking');
 
   @override
-  Future setLoggedIn(User user) {
-    return _$setLoggedInAsyncAction.run(() => super.setLoggedIn(user));
+  Future checking() {
+    return _$checkingAsyncAction.run(() => super.checking());
   }
 
   final _$logoutAsyncAction = AsyncAction('logout');
