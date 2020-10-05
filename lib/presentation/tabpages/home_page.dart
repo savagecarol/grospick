@@ -16,24 +16,16 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   GoogleMapController mapController;
 
-  CategoryStore categoryStore;
-
-  @override
-  void initState() {
-    super.initState();
-    p();
-
-  }
-
- 
-  p () async {
-    await categoryStore.fetchCategorties();
-  }
-
   @override
   Widget build(BuildContext context) {
     return StoreObserver<CategoryStore>(
         builder: (CategoryStore categoryStore, BuildContext conteext) {
+          if(categoryStore.categoryMap == null)
+              categoryStore.fetchCategorties();
+          if(categoryStore.isCategoryLoading)
+            return Center(
+              child: CircularProgressIndicator(),
+            );
       return ListView(
         children: [
           SizedBox(height: ScreenUtil.instance.setHeight(32)),
