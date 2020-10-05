@@ -20,16 +20,19 @@ abstract class _CategoryStore with Store {
   bool isOfferLoading = false;
 
   @observable
-   ObservableList categoryMap;
+  ObservableList categoryMap;
 
   @action
   fetchCategorties() async {
     if (categoryMap == null) {
       try {
+        categoryMap = ObservableList();
         isCategoryLoading = true;
-        List categoryMap = await productService.fetchCategory();
-        print(categoryMap);
-        if (categoryMap != null) {
+        List response = await productService.fetchCategory();
+        print(response);
+
+        if (response != null) {
+          categoryMap.addAll(response);
           isCategoryLoading = false;
           print("success");
         } else {

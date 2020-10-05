@@ -18,70 +18,91 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return StoreObserver<CategoryStore>(
-        builder: (CategoryStore categoryStore, BuildContext conteext) {
-          if(categoryStore.categoryMap == null)
-              categoryStore.fetchCategorties();
-          if(categoryStore.isCategoryLoading)
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-      return ListView(
-        children: [
-          SizedBox(height: ScreenUtil.instance.setHeight(32)),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32),
-            child: CustomTextField(
-              size: true,
-              hintText: 'Search For Store And product',
-              icon: Icons.search,
-              isPrefixIcon: true,
+    return SafeArea(
+          child: StoreObserver<CategoryStore>(
+          builder: (CategoryStore categoryStore, BuildContext conteext) {
+        if(categoryStore.categoryMap==null)
+         categoryStore.fetchCategorties();
+        print(categoryStore.isCategoryLoading);
+        if (categoryStore.isCategoryLoading)
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        print(categoryStore.isCategoryLoading);
+        return ListView(
+          children: [
+            SizedBox(height: ScreenUtil.instance.setHeight(32)),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32),
+              child: CustomTextField(
+                size: true,
+                hintText: 'Search For Store And product',
+                icon: Icons.search,
+                isPrefixIcon: true,
+              ),
             ),
-          ),
-          SizedBox(height: ScreenUtil.instance.setHeight(32)),
-          Container(
-              child: (categoryStore.categoryMap == null)
-                  ? SizedBox(
-                      height: ScreenUtil.instance.setHeight(200),
-                      child: Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                    )
-                  : Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
-                      child: Container(
-                        height: 3 * ScreenUtil.instance.setHeight(200),
-                        width: ScreenUtil.instance
-                            .setWidth(ScreenUtil.instance.width),
-                        child: GridView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 8,
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 3,
-                              mainAxisSpacing: 10,
-                              crossAxisSpacing: 5,
-                              childAspectRatio: 1.5,
-                            ),
-                            itemBuilder: (context, i) {
-                              return Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 2),
-                                  child: CustomCategoryContainer(
-                                      image: 'assets/fruits.png', name: "v"));
-                            }),
-                      ),
-                    )),
-          Container(
-            width: ScreenUtil.instance.setWidth(ScreenUtil.instance.width),
-            height: ScreenUtil.instance.setHeight(200),
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/c.jpg'), fit: BoxFit.fitWidth)),
-          )
-        ],
-      );
-    });
+            SizedBox(height: ScreenUtil.instance.setHeight(32)),
+            Container(
+                child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Container(
+                height: 4 * ScreenUtil.instance.setHeight(150),
+                width: ScreenUtil.instance.setWidth(ScreenUtil.instance.width),
+                child: GridView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: categoryStore.categoryMap.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4,
+                      mainAxisSpacing: 12,
+                      crossAxisSpacing: 16,
+                      childAspectRatio: .64,
+                    ),
+                    itemBuilder: (context, i) {
+                      String p = 'assets/';
+                      if (categoryStore.categoryMap[i] == 'Grocery') {
+                        p = p + 'groceries.png';
+                      }
+                      if (categoryStore.categoryMap[i] == 'Medicine') {
+                           p = p + 'medicine.png';
+                      }
+                      if (categoryStore.categoryMap[i] == 'Restaurant') {
+                           p = p + 'meat.png';
+                      }
+                      if (categoryStore.categoryMap[i] == 'Food') {
+                         p = p + 'food.png';
+                      }
+                        if (categoryStore.categoryMap[i] == 'Liquor') {
+                         p = p + 'liquor.png';
+                      }
+                      if (categoryStore.categoryMap[i] == 'Laundry') {
+                         p = p + 'laundry.png';
+                      }
+                      if (categoryStore.categoryMap[i] == 'Pets') {
+                          p = p + 'pet.png';
+                      }
+                      if (categoryStore.categoryMap[i] == 'Vegetables') {
+                              p = p + 'fruits.png';
+                      }
+
+                          return CustomCategoryContainer(image: p);
+                    }),
+              ),
+            )),
+
+             SizedBox(height: ScreenUtil.instance.setHeight(32)),
+
+
+            Container(
+              width: ScreenUtil.instance.setWidth(ScreenUtil.instance.width),
+              height: ScreenUtil.instance.setHeight(200),
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/c.jpg'), fit: BoxFit.fitWidth)),
+            )
+          ],
+        );
+      }),
+    );
   }
 }
 
