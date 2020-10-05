@@ -1,4 +1,5 @@
 // import 'package:grospick/models/category.dart';
+import 'package:flutter/material.dart';
 import 'package:grospick/utils/global.dart';
 import 'package:mobx/mobx.dart';
 
@@ -23,12 +24,12 @@ abstract class _CategoryStore with Store {
   ObservableList categoryMap;
 
   @action
-  fetchCategorties() async {
+  fetchCategorties(String choose) async {
     if (categoryMap == null) {
       try {
         categoryMap = ObservableList();
         isCategoryLoading = true;
-        List response = await productService.fetchCategory();
+        List response = await productService.fetchCity(choose);
         print(response);
 
         if (response != null) {
@@ -46,3 +47,7 @@ abstract class _CategoryStore with Store {
     }
   }
 }
+
+
+
+

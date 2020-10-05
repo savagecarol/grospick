@@ -98,7 +98,8 @@ mixin _$CategoryStore on _CategoryStore, Store {
   final _$fetchCategortiesAsyncAction = AsyncAction('fetchCategorties');
 
   @override
-  Future fetchCategorties() {
-    return _$fetchCategortiesAsyncAction.run(() => super.fetchCategorties());
+  Future fetchCategorties(String choose) {
+    return _$fetchCategortiesAsyncAction
+        .run(() => super.fetchCategorties(choose));
   }
 }

@@ -5,6 +5,7 @@ import 'package:grospick/models/store_observer.dart';
 import 'package:grospick/presentation/custom/category_container.dart';
 import 'package:grospick/presentation/custom/text_field.dart';
 import 'package:grospick/store/category_store.dart';
+import 'package:search_map_place/search_map_place.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -15,14 +16,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   GoogleMapController mapController;
-
+  String _city;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-          child: StoreObserver<CategoryStore>(
+      child: StoreObserver<CategoryStore>(
           builder: (CategoryStore categoryStore, BuildContext conteext) {
-        if(categoryStore.categoryMap==null)
-         categoryStore.fetchCategorties();
+        if (categoryStore.categoryMap == null)
+          categoryStore.fetchCategorties('categories');
         print(categoryStore.isCategoryLoading);
         if (categoryStore.isCategoryLoading)
           return Center(
@@ -39,6 +40,9 @@ class _HomePageState extends State<HomePage> {
                 hintText: 'Search For Store And product',
                 icon: Icons.search,
                 isPrefixIcon: true,
+                onSaved: (value) {
+                  return _city = value;
+                },
               ),
             ),
             SizedBox(height: ScreenUtil.instance.setHeight(32)),
@@ -63,35 +67,32 @@ class _HomePageState extends State<HomePage> {
                         p = p + 'groceries.png';
                       }
                       if (categoryStore.categoryMap[i] == 'Medicine') {
-                           p = p + 'medicine.png';
+                        p = p + 'medicine.png';
                       }
                       if (categoryStore.categoryMap[i] == 'Restaurant') {
-                           p = p + 'meat.png';
+                        p = p + 'meat.png';
                       }
                       if (categoryStore.categoryMap[i] == 'Food') {
-                         p = p + 'food.png';
+                        p = p + 'food.png';
                       }
-                        if (categoryStore.categoryMap[i] == 'Liquor') {
-                         p = p + 'liquor.png';
+                      if (categoryStore.categoryMap[i] == 'Liquor') {
+                        p = p + 'liquor.png';
                       }
                       if (categoryStore.categoryMap[i] == 'Laundry') {
-                         p = p + 'laundry.png';
+                        p = p + 'laundry.png';
                       }
                       if (categoryStore.categoryMap[i] == 'Pets') {
-                          p = p + 'pet.png';
+                        p = p + 'pet.png';
                       }
                       if (categoryStore.categoryMap[i] == 'Vegetables') {
-                              p = p + 'fruits.png';
+                        p = p + 'fruits.png';
                       }
 
-                          return CustomCategoryContainer(image: p);
+                      return CustomCategoryContainer(image: p);
                     }),
               ),
             )),
-
-             SizedBox(height: ScreenUtil.instance.setHeight(32)),
-
-
+            SizedBox(height: ScreenUtil.instance.setHeight(32)),
             Container(
               width: ScreenUtil.instance.setWidth(ScreenUtil.instance.width),
               height: ScreenUtil.instance.setHeight(200),
@@ -106,20 +107,6 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-// SearchMapPlaceWidget(
-//     hasClearButton: true,
-//     placeType: PlaceType.address,
-//     placeholder: 'Enter the location',
-//     apiKey: "AIzaSyBM84WFmoqhlkcUbZGPjkH1D1cwn8XJvmE",
-//     onSelected: (Place place) async {
-//       Geolocation geolocation = await place.geolocation;
-//       print(geolocation);
-//       mapController.animateCamera(
-//           CameraUpdate.newLatLng(geolocation.coordinates));
-//       mapController.animateCamera(CameraUpdate.newLatLngBounds(geolocation.bounds, 0));
-
-//     }),
-
 // SizedBox(
 //   height: ScreenUtil.instance.setHeight(600),
 //   child: GoogleMap(
@@ -133,3 +120,17 @@ class _HomePageState extends State<HomePage> {
 //     },
 //   ),
 // ),
+
+//             SearchMapPlaceWidget(
+//   hasClearButton: true,
+//   placeType: PlaceType.address,
+//   placeholder: 'Enter the location',
+//  apiKey: "AIzaSyBM84WFmoqhlkcUbZGPjkH1D1cwn8XJvmE",
+//   onSelected: (Place place) async {
+//     Geolocation geolocation = await place.geolocation;
+//     print(geolocation);
+//     mapController.animateCamera(
+//         CameraUpdate.newLatLng(geolocation.coordinates));
+//     mapController.animateCamera(CameraUpdate.newLatLngBounds(geolocation.bounds, 0));
+
+//   }),

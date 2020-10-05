@@ -27,15 +27,20 @@ class ProductService {
   //   return productList;
   // }
 
-  Future<List> fetchCategory() async {
+  Future<List> fetchCity(String a) async {
     QuerySnapshot querySnapshot =
         await _firestore.collection('city').getDocuments();
             List l;
     querySnapshot.documents.forEach((DocumentSnapshot documentSnapshot) {
-      if (documentSnapshot.documentID == 'categories') {
+      if (documentSnapshot.documentID == a) {
             l= documentSnapshot.data['items'];
       }
     });
     return l;
   }
+
+
+
+
+
 }
