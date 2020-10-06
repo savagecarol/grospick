@@ -50,6 +50,10 @@ abstract class _UserStore with Store {
     }
   }
 
+
+
+
+
   // @action
   // sendOTP(
   //     {String phoneNumber,
@@ -186,6 +190,11 @@ abstract class _UserStore with Store {
   //   loggedInUser = user;
   //   isLoggedIn = true;
   // }
+
+
+
+
+
 
   @action
   createUser(

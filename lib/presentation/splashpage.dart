@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:grospick/presentation/profilepage.dart';
 import 'package:grospick/presentation/tabpages/home_page.dart';
 import 'package:grospick/presentation/tabpages/orders.dart';
 import 'package:grospick/presentation/tabpages/search.dart';
@@ -26,6 +27,9 @@ class _SplashPageState extends State<SplashPage> {
       case 2:
         return Orders();
         break;
+       case 3:
+        return ProfilePage();
+        break;
        default:
          return HomePage();
     }
@@ -42,6 +46,7 @@ class _SplashPageState extends State<SplashPage> {
           _getBottomBarItem(index: 0, icontab: Icons.home),
           _getBottomBarItem(index: 1, icontab: Icons.search),
           _getBottomBarItem(index: 2, icontab: Icons.list),
+          _getBottomBarItem(index: 3, icontab: Icons.account_box),
         ],
       ),
     );

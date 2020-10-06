@@ -1,6 +1,7 @@
 
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:grospick/models/promocode.dart';
 
 
 class ProductService {
@@ -38,6 +39,13 @@ class ProductService {
     });
     return l;
   }
+
+
+
+
+
+
+
 
 
 

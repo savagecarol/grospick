@@ -25,25 +25,25 @@ class _EmailAuthPageState extends State<EmailAuthPage> {
   String _password;
   var _do = 0;
 
-  @override
-  void initState() {
-    super.initState();
-    // if (_currpage == 0) {
-    //    Future<bool> p = check();
-    //   Timer(Duration(seconds: 5), () {
-    //     setState(() {
-    //       // bool p = false;
-    //       if (p == false) {
-    //         _currpage = 1;
-    //       }
-    //         else {
-    //          print("jai hind");
-    //          _navigateToHomePage();
-    //        }
-    //     });
-    //   });
-    // }
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   if (_currpage == 0) {
+  //      Future<bool> p = check();
+  //     Timer(Duration(seconds: 5), () {
+  //       setState(() {
+  //         // bool p = false;
+  //         if (p == false) {
+  //           _currpage = 1;
+  //         }
+  //           else {
+  //            print("jai hind");
+  //            _navigateToHomePage();
+  //          }
+  //       });
+  //     });
+  //   }
+  // }
 
   Future<bool> check() async {
     String k = await firebaseAuthService.getCurrentuser();
@@ -87,19 +87,7 @@ class _EmailAuthPageState extends State<EmailAuthPage> {
       child: Scaffold(body: StoreObserver<UserStore>(
           builder: (UserStore userStore, BuildContext context) {
         userStore.checking();
-        if (!userStore.isLoggedIn) {
-          return Container(
-            // color: Styles.P_BACKGROUND_COLOR,
-            child: Center(
-              child: CustomImage(
-                image: StringValues.APP_LOGO,
-                height: 180,
-                width: 150,
-              ),
-            ),
-          );
-        }
-
+      
         return Container(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32),
