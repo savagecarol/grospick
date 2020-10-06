@@ -5,7 +5,7 @@ import 'package:grospick/services/product_services.dart';
 
 double defaultHeight = 896;
 double defaultWidth = 414;
-
+var page_index;
 final FirebaseAuthService firebaseAuthService =
     FirebaseAuthService.getInstance();
 final ProductService productService = ProductService.getInstance();

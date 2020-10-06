@@ -1,5 +1,5 @@
 // import 'package:grospick/models/category.dart';
-import 'package:flutter/material.dart';
+
 import 'package:grospick/utils/global.dart';
 import 'package:mobx/mobx.dart';
 
@@ -22,6 +22,7 @@ abstract class _CategoryStore with Store {
 
   @observable
   ObservableList categoryMap;
+
 
   @action
   fetchCategorties(String choose) async {
@@ -46,6 +47,7 @@ abstract class _CategoryStore with Store {
       }
     }
   }
+
 }
 
 

@@ -220,12 +220,10 @@ abstract class _UserStore with Store {
 
   @action
   checking() async {
-    print("login or not");
-    isLoggedIn = false;
     String user = await firebaseAuthService.getCurrentuser();
-    if (user == null) {
+    if (user == null)
       isLoggedIn = false;
-    } else {
+    else {
       isLoggedIn = true;
       await preferenceService.setUID(user);
     }

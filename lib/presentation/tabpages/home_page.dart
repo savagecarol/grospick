@@ -5,9 +5,10 @@ import 'package:grospick/models/store_observer.dart';
 import 'package:grospick/presentation/custom/category_container.dart';
 import 'package:grospick/presentation/custom/text_field.dart';
 import 'package:grospick/store/category_store.dart';
-import 'package:search_map_place/search_map_place.dart';
+import 'package:grospick/utils/global.dart';
 
 class HomePage extends StatefulWidget {
+  
   HomePage({Key key}) : super(key: key);
 
   @override
@@ -17,6 +18,16 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   GoogleMapController mapController;
   String _city;
+
+     
+                          navigateToMenuPage(var i)
+                          {
+                               page_index = i;
+
+
+                          }
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -88,7 +99,13 @@ class _HomePageState extends State<HomePage> {
                         p = p + 'fruits.png';
                       }
 
-                      return CustomCategoryContainer(image: p);
+                      return CustomCategoryContainer(
+                        image: p,
+                        onTap: () {
+                          page_index = i;
+                          navigateToMenuPage(i);
+                        },
+                      );
                     }),
               ),
             )),

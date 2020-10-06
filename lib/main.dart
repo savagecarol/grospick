@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:grospick/presentation/menupage.dart';
 import 'package:grospick/presentation/splashpage.dart';
 import 'package:grospick/presentation/email_auth_page.dart';
 import 'package:grospick/store/category_store.dart';
@@ -24,10 +25,11 @@ class GrosPick extends StatelessWidget {
           child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(primaryColor: Colors.white,),
-           initialRoute: EmailAuthPage .routeNamed,
+           initialRoute:SplashPage .routeNamed,
                    routes: {
             EmailAuthPage .routeNamed: (BuildContext context) => EmailAuthPage(),
-                  SplashPage .routeNamed: (BuildContext context) => SplashPage(),    
+            SplashPage .routeNamed: (BuildContext context) => SplashPage(), 
+            MenuPage .routeNamed: (BuildContext context) => MenuPage(),      
                       },
                 ),
     );
