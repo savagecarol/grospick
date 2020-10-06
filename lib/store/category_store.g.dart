@@ -95,11 +95,47 @@ mixin _$CategoryStore on _CategoryStore, Store {
     }, _$categoryMapAtom, name: '${_$categoryMapAtom.name}_set');
   }
 
+  final _$isPromoCodeLoadingAtom =
+      Atom(name: '_CategoryStore.isPromoCodeLoading');
+
+  @override
+  bool get isPromoCodeLoading {
+    _$isPromoCodeLoadingAtom.context
+        .enforceReadPolicy(_$isPromoCodeLoadingAtom);
+    _$isPromoCodeLoadingAtom.reportObserved();
+    return super.isPromoCodeLoading;
+  }
+
+  @override
+  set isPromoCodeLoading(bool value) {
+    _$isPromoCodeLoadingAtom.context.conditionallyRunInAction(() {
+      super.isPromoCodeLoading = value;
+      _$isPromoCodeLoadingAtom.reportChanged();
+    }, _$isPromoCodeLoadingAtom, name: '${_$isPromoCodeLoadingAtom.name}_set');
+  }
+
+  final _$promocodeAtom = Atom(name: '_CategoryStore.promocode');
+
+  @override
+  Promocode get promocode {
+    _$promocodeAtom.context.enforceReadPolicy(_$promocodeAtom);
+    _$promocodeAtom.reportObserved();
+    return super.promocode;
+  }
+
+  @override
+  set promocode(Promocode value) {
+    _$promocodeAtom.context.conditionallyRunInAction(() {
+      super.promocode = value;
+      _$promocodeAtom.reportChanged();
+    }, _$promocodeAtom, name: '${_$promocodeAtom.name}_set');
+  }
+
   final _$fetchCategortiesAsyncAction = AsyncAction('fetchCategorties');
 
   @override
-  Future fetchCategorties(String choose) {
+  Future fetchCategorties(String choose, String getter) {
     return _$fetchCategortiesAsyncAction
-        .run(() => super.fetchCategorties(choose));
+        .run(() => super.fetchCategorties(choose, getter));
   }
 }

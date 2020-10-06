@@ -1,5 +1,6 @@
 // import 'package:grospick/models/category.dart';
 
+import 'package:grospick/models/promocode.dart';
 import 'package:grospick/utils/global.dart';
 import 'package:mobx/mobx.dart';
 
@@ -23,16 +24,20 @@ abstract class _CategoryStore with Store {
   @observable
   ObservableList categoryMap;
 
+  @observable
+  bool isPromoCodeLoading = false;
+
+  @observable
+  Promocode promocode;
 
   @action
-  fetchCategorties(String choose) async {
+  fetchCategorties(String choose, String getter) async {
     if (categoryMap == null) {
       try {
         categoryMap = ObservableList();
         isCategoryLoading = true;
-        List response = await productService.fetchCity(choose);
+        List response = await productService.fetchCity(choose, getter);
         print(response);
-
         if (response != null) {
           categoryMap.addAll(response);
           isCategoryLoading = false;
@@ -48,8 +53,14 @@ abstract class _CategoryStore with Store {
     }
   }
 
+  getPromocode() async {
+    try {
+      isPromoCodeLoading = true;
+      promocode = await productService.fetchPromoCOde();
+      isPromoCodeLoading = false;
+    } catch (e) {
+      isPromoCodeLoading = false;
+      throw e;
+    }
+  }
 }
-
-
-
-

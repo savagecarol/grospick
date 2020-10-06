@@ -26,6 +26,8 @@ class _EmailAuthPageState extends State<EmailAuthPage> {
   var _do = 0;
   String _name;
 
+
+    
   Future<bool> check() async {
     String k = await firebaseAuthService.getCurrentuser();
     if (k != null)
@@ -43,6 +45,7 @@ class _EmailAuthPageState extends State<EmailAuthPage> {
       }
     }
   }
+
 
   _generaltext(String s) {
     return Container(
@@ -185,9 +188,6 @@ class _EmailAuthPageState extends State<EmailAuthPage> {
                                             await userStore.logIn(
                                                 email: _email,
                                                 password: _password);
-                                                     _name = '';
-                                            _email = '';
-                                            _password = '';
                                             if (userStore.isLoading == false) {
                                               print(userStore.isLoading);
                                               _navigateToHomePage();
@@ -217,7 +217,7 @@ class _EmailAuthPageState extends State<EmailAuthPage> {
                                               return showSnackbar(
                                                   'Email Sent to Your Account',
                                                   context);
-                                                  
+
                                             } else {
                                               return showSnackbar(
                                                   'Some Problem in Sending Email',
@@ -274,22 +274,3 @@ class _EmailAuthPageState extends State<EmailAuthPage> {
   }
 }
 
-// @override
-// void initState() {
-//   super.initState();
-//   if (_currpage == 0) {
-//      Future<bool> p = check();
-//     Timer(Duration(seconds: 5), () {
-//       setState(() {
-//         // bool p = false;
-//         if (p == false) {
-//           _currpage = 1;
-//         }
-//           else {
-//            print("jai hind");
-//            _navigateToHomePage();
-//          }
-//       });
-//     });
-//   }
-// }

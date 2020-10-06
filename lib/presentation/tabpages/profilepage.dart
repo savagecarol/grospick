@@ -4,10 +4,12 @@ import 'package:grospick/models/store_observer.dart';
 import 'package:grospick/presentation/custom/button.dart';
 import 'package:grospick/presentation/custom/custom_image.dart';
 import 'package:grospick/presentation/email_auth_page.dart';
+import 'package:grospick/presentation/splashpage.dart';
 import 'package:grospick/store/user_store.dart';
 import 'package:grospick/utils/global.dart';
 
 import 'package:grospick/utils/stringValues.dart';
+import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -15,10 +17,6 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   _navigateToLoginPage() {
     login_signin = true;
@@ -30,33 +28,76 @@ class _ProfilePageState extends State<ProfilePage> {
     Navigator.pushNamed(context, EmailAuthPage.routeNamed);
   }
 
+ 
+  
+  _naviagetToHomePage() {
+    Navigator.pushNamed(context, SplashPage.routeNamed);
+  }
+
   @override
   Widget build(BuildContext context) {
     return StoreObserver<UserStore>(
         builder: (UserStore userStore, BuildContext conteext) {
-      if (userStore.isLoggedIn == true) {
-        userStore.getData();
-        if (userStore.isLoading) {
+      print(userStore.isLoggedIn);
+      if (userStore.isLoggedIn)
+       {
+        if (userStore.isLoading)
           return Center(
             child: CircularProgressIndicator(),
           );
+        else
+         {
+          return Container(
+              child: Padding(
+                  padding: EdgeInsets.all(32),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: ScreenUtil.instance.setHeight(64)),
+                        CustomImage(
+                          image: StringValues.GROSSPICK,
+                          height: 100,
+                          width: 300,
+                        ),
+                        SizedBox(height: ScreenUtil.instance.setHeight(64)),
+                        Text(
+                          'Name',
+                          style: TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(height: ScreenUtil.instance.setHeight(8)),
+                        Text(userStore.loggedInUser.name,
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.w500)),
+                        SizedBox(height: ScreenUtil.instance.setHeight(32)),
+                        Text(
+                          'Email',
+                          style: TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(height: ScreenUtil.instance.setHeight(8)),
+                        Text(userStore.loggedInUser.email,
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.w500)),
+                        SizedBox(height: ScreenUtil.instance.setHeight(32)),
+                        CustomButton(
+                          height: 70,
+                          width: ScreenUtil.instance.width,
+                          text: StringValues.SIGNOUT,
+                          fontColor: Colors.white,
+                          fontSize: 22,
+                          onTap: () async {
+                            print(preferenceService.getUID());
+
+                            userStore.logout();
+
+                            print(preferenceService.getUID());
+                            _naviagetToHomePage();
+                          },
+                        )
+                      ])));
         }
-        return Container(
-            child: Padding(
-                padding: EdgeInsets.all(32),
-                child: Center(
-                    child: Column(children: [
-                  SizedBox(height: ScreenUtil.instance.setHeight(64)),
-                  CustomImage(
-                    image: StringValues.GROSSPICK,
-                    height: 100,
-                    width: 300,
-                  ),
-                  Text(userStore.loggedInUser.email),
-                  Text(userStore.loggedInUser.name),
-                ]))));
-      }
-      if (userStore.isLoggedIn == false) {
+      } 
         return Container(
           color: Colors.white,
           child: Padding(
@@ -93,7 +134,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
         );
-      }
+      
     });
   }
 }

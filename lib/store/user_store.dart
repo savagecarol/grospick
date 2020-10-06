@@ -33,7 +33,6 @@ abstract class _UserStore with Store {
     isLoading = true;
     loggedInUser = await firebaseAuthService.getData();
     isLoading = false;
-    print(isLoading);
   }
 
   @action

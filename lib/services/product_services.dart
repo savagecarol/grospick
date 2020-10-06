@@ -1,8 +1,5 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:grospick/models/promocode.dart';
-
 
 class ProductService {
   ProductService._();
@@ -28,27 +25,20 @@ class ProductService {
   //   return productList;
   // }
 
-  Future<List> fetchCity(String a) async {
-    QuerySnapshot querySnapshot =
-        await _firestore.collection('city').getDocuments();
-            List l;
-    querySnapshot.documents.forEach((DocumentSnapshot documentSnapshot) {
-      if (documentSnapshot.documentID == a) {
-            l= documentSnapshot.data['items'];
-      }
-    });
+  Future<List> fetchCity(String a,String getter) async {
+    List l;
+    DocumentSnapshot documentSnapshot =
+        await _firestore.collection('users').document(a).get();
+    l = documentSnapshot.data[getter];
     return l;
   }
-
-
-
-
-
-
-
-
-
-
-
-
+  
+  Future<Promocode> fetchPromoCOde() async {
+    DocumentSnapshot documentSnapshot = await _firestore
+        .collection('users')
+        .document('j9v0kuyjdBBAcdcJOIS5')
+        .get();
+        Promocode promocode= Promocode.fromJson(documentSnapshot.data);
+    return promocode;
+  }
 }

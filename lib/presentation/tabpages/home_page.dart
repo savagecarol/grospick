@@ -5,7 +5,9 @@ import 'package:grospick/models/store_observer.dart';
 import 'package:grospick/presentation/custom/category_container.dart';
 import 'package:grospick/presentation/custom/text_field.dart';
 import 'package:grospick/store/category_store.dart';
+import 'package:grospick/store/user_store.dart';
 import 'package:grospick/utils/global.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   
@@ -24,12 +26,29 @@ class _HomePageState extends State<HomePage> {
                           }
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      checking();
+    });
+  }
+
+
+checking() async {
+   String uid = await preferenceService.getUID();
+    if (uid != null) {
+      await Provider.of<UserStore>(context).checking();
+      await Provider.of<UserStore>(context).getData();
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: StoreObserver<CategoryStore>(
-          builder: (CategoryStore categoryStore, BuildContext conteext) {
+          builder: (CategoryStore categoryStore,BuildContext conteext) {
         if (categoryStore.categoryMap == null)
-          categoryStore.fetchCategorties('categories');
+          categoryStore.fetchCategorties('categories','items');
         print(categoryStore.isCategoryLoading);
         if (categoryStore.isCategoryLoading)
           return Center(

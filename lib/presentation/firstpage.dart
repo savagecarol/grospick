@@ -5,9 +5,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grospick/models/store_observer.dart';
 import 'package:grospick/presentation/custom/custom_image.dart';
 import 'package:grospick/presentation/splashpage.dart';
+import 'package:grospick/store/category_store.dart';
 import 'package:grospick/store/user_store.dart';
 import 'package:grospick/utils/global.dart';
 import 'package:grospick/utils/stringValues.dart';
+import 'package:provider/provider.dart';
 
 class FirstPage extends StatefulWidget {
   static const String routeNamed = 'firstPage';
@@ -37,7 +39,6 @@ class _FirstPageState extends State<FirstPage> {
       body: StoreObserver<UserStore>(
           builder: (UserStore userStore, BuildContext conteext) {
         userStore.checking();
-  
         return Container(
           child: Center(
             child: CustomImage(
