@@ -1,7 +1,10 @@
 import 'dart:async';
 import 'dart:core';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:grospick/models/user.dart';
+import 'package:grospick/utils/global.dart';
 
 class FirebaseAuthService {
   FirebaseAuthService._();
@@ -9,6 +12,7 @@ class FirebaseAuthService {
   static final FirebaseAuthService _instance = FirebaseAuthService._();
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  Firestore _firestore = Firestore.instance;
 
   Future<String> signIn(String email, String password) async {
     try {
@@ -25,13 +29,17 @@ class FirebaseAuthService {
     }
   }
 
-  Future<String> signUp(String email, String password) async {
+  Future<String> signUp(String name, String email, String password) async {
     try {
       AuthResult authResult = await _firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password);
       FirebaseUser user = authResult.user;
       try {
         await user.sendEmailVerification();
+        await _firestore
+            .collection('users')
+            .document(user.uid)
+            .setData({'email': email, 'name': name});
         return user.uid;
       } catch (e) {
         print("An error occured while trying to send email verification");
@@ -68,5 +76,12 @@ class FirebaseAuthService {
       print(e);
       return false;
     }
+  }
+
+  Future<User> getData() async {
+      String uid = await preferenceService.getUID();
+    DocumentSnapshot documentSnapshot = await _firestore.collection('users').document(uid).get();
+    User user = User.fromJson(documentSnapshot.data);
+    return user;
   }
 }

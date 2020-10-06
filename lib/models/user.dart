@@ -17,8 +17,5 @@ abstract class _User with Store {
   String email;
   @observable
   String name;
-    @observable
-  String password;
-
 }
 

@@ -9,14 +9,12 @@ part of 'user.dart';
 User _$UserFromJson(Map<String, dynamic> json) {
   return User()
     ..email = json['email'] as String
-    ..name = json['name'] as String
-    ..password = json['password'] as String;
+    ..name = json['name'] as String;
 }
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'email': instance.email,
       'name': instance.name,
-      'password': instance.password,
     };
 
 // **************************************************************************
@@ -58,22 +56,5 @@ mixin _$User on _User, Store {
       super.name = value;
       _$nameAtom.reportChanged();
     }, _$nameAtom, name: '${_$nameAtom.name}_set');
-  }
-
-  final _$passwordAtom = Atom(name: '_User.password');
-
-  @override
-  String get password {
-    _$passwordAtom.context.enforceReadPolicy(_$passwordAtom);
-    _$passwordAtom.reportObserved();
-    return super.password;
-  }
-
-  @override
-  set password(String value) {
-    _$passwordAtom.context.conditionallyRunInAction(() {
-      super.password = value;
-      _$passwordAtom.reportChanged();
-    }, _$passwordAtom, name: '${_$passwordAtom.name}_set');
   }
 }

@@ -18,15 +18,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   GoogleMapController mapController;
   String _city;
-
-     
                           navigateToMenuPage(var i)
                           {
                                page_index = i;
-
-
                           }
-
 
   @override
   Widget build(BuildContext context) {
@@ -124,30 +119,3 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-// SizedBox(
-//   height: ScreenUtil.instance.setHeight(600),
-//   child: GoogleMap(
-//     initialCameraPosition:
-//         CameraPosition(zoom: 15, target: LatLng(21.1458, 79.0882)),
-//     onMapCreated: (GoogleMapController googleMapController) {
-//       setState(() {
-//         mapController = googleMapController;
-//       });
-
-//     },
-//   ),
-// ),
-
-//             SearchMapPlaceWidget(
-//   hasClearButton: true,
-//   placeType: PlaceType.address,
-//   placeholder: 'Enter the location',
-//  apiKey: "AIzaSyBM84WFmoqhlkcUbZGPjkH1D1cwn8XJvmE",
-//   onSelected: (Place place) async {
-//     Geolocation geolocation = await place.geolocation;
-//     print(geolocation);
-//     mapController.animateCamera(
-//         CameraUpdate.newLatLng(geolocation.coordinates));
-//     mapController.animateCamera(CameraUpdate.newLatLngBounds(geolocation.bounds, 0));
-
-//   }),

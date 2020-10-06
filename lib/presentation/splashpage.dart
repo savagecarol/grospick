@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:grospick/presentation/profilepage.dart';
+import 'package:grospick/presentation/tabpages/profilepage.dart';
 import 'package:grospick/presentation/tabpages/home_page.dart';
 import 'package:grospick/presentation/tabpages/orders.dart';
 import 'package:grospick/presentation/tabpages/search.dart';
 import 'package:grospick/utils/global.dart';
+import 'package:grospick/utils/styles.dart';
 
 class SplashPage extends StatefulWidget {
   static const String routeNamed = 'SplashPage';
@@ -37,7 +38,7 @@ class _SplashPageState extends State<SplashPage> {
 
   _getBottomBar() {
     return Card(
-             color: Colors.green[100],
+             color: Styles.APP_COLOR,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
       margin: EdgeInsets.all(0),
       child: Row(
@@ -71,12 +72,7 @@ class _SplashPageState extends State<SplashPage> {
           children: <Widget>[
             Container(
               padding: EdgeInsets.all(5),
-              // decoration: BoxDecoration(
-              //   color: currentPage == index
-              //       ? Colors.pink
-              //       : Colors.transparent,
-              //   borderRadius: BorderRadius.circular(5),
-              // ),
+    
               child: Center(
                 child: Icon(
                   icontab,
@@ -98,11 +94,13 @@ class _SplashPageState extends State<SplashPage> {
     ScreenUtil.instance = ScreenUtil(
         height: defaultHeight, width: defaultWidth, allowFontScaling: false)
       ..init(context);
-    return Scaffold(
-      body: Column(
-        children: <Widget>[Expanded(child: _getBody()), _getBottomBar()],
+    return SafeArea(
+          child: Scaffold(
+        body: Column(
+          children: <Widget>[Expanded(child: _getBody()), _getBottomBar()],
+        ),
+        resizeToAvoidBottomPadding: false,
       ),
-      resizeToAvoidBottomPadding: false,
     );
   }
 }

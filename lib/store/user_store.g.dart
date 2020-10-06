@@ -129,6 +129,13 @@ mixin _$UserStore on _UserStore, Store {
     }, _$isCheckUserAtom, name: '${_$isCheckUserAtom.name}_set');
   }
 
+  final _$getDataAsyncAction = AsyncAction('getData');
+
+  @override
+  Future getData() {
+    return _$getDataAsyncAction.run(() => super.getData());
+  }
+
   final _$logInAsyncAction = AsyncAction('logIn');
 
   @override
@@ -140,8 +147,9 @@ mixin _$UserStore on _UserStore, Store {
   final _$createUserAsyncAction = AsyncAction('createUser');
 
   @override
-  Future createUser(String email, String password) {
-    return _$createUserAsyncAction.run(() => super.createUser(email, password));
+  Future createUser(String name, String email, String password) {
+    return _$createUserAsyncAction
+        .run(() => super.createUser(name, email, password));
   }
 
   final _$checkingAsyncAction = AsyncAction('checking');
