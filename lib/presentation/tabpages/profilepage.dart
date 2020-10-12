@@ -22,14 +22,11 @@ class _ProfilePageState extends State<ProfilePage> {
     login_signin = true;
     Navigator.pushNamed(context, EmailAuthPage.routeNamed);
   }
-
   _navigateToSigninPage() {
     login_signin = false;
     Navigator.pushNamed(context, EmailAuthPage.routeNamed);
   }
 
- 
-  
   _naviagetToHomePage() {
     Navigator.pushNamed(context, SplashPage.routeNamed);
   }

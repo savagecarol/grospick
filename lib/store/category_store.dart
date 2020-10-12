@@ -13,22 +13,64 @@ abstract class _CategoryStore with Store {
   bool isLoading = false;
 
   @observable
-  bool isSearching = false;
+  ObservableList city;
 
   @observable
   bool isCategoryLoading = false;
 
   @observable
-  bool isOfferLoading = false;
+  ObservableList categoryMap;
 
   @observable
-  ObservableList categoryMap;
+  bool isRestaurantLoading = false;
+
+  @observable
+  ObservableList restaurant;
+
 
   @observable
   bool isPromoCodeLoading = false;
 
   @observable
   Promocode promocode;
+
+  
+
+
+
+
+
+  @observable
+  bool isSearching = false;
+
+ 
+
+  @observable
+  bool isOfferLoading = false;
+
+
+  @action
+  fetchCity(String choose, String getter) async {
+    if (city == null) {
+      try {
+        city = ObservableList();
+        isLoading = true;
+        List response = await productService.fetchCity(choose, getter);
+        print(response);
+        if (response != null) {
+          city.addAll(response);
+          isLoading = false;
+          print("success");
+        } else {
+          print("yo");
+          isLoading = true;
+        }
+      } catch (e) {
+        isLoading = false;
+        throw e;
+      }
+    }
+  }
 
   @action
   fetchCategorties(String choose, String getter) async {
@@ -53,6 +95,30 @@ abstract class _CategoryStore with Store {
     }
   }
 
+    @action
+  fetchRestaurant(String choose, String getter) async {
+    if (restaurant == null) {
+      try {
+        restaurant = ObservableList();
+         isRestaurantLoading = true;
+        List response = await productService.fetchCity(choose, getter);
+        print(response);
+        if (response != null) {
+          restaurant.addAll(response);
+          isRestaurantLoading = false;
+          print("success");
+        } else {
+          print("yo");
+          isRestaurantLoading = true;
+        }
+      } catch (e) {
+        isCategoryLoading = false;
+        throw e;
+      }
+    }
+  }
+
+   @action
   getPromocode() async {
     try {
       isPromoCodeLoading = true;

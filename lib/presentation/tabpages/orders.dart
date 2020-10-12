@@ -10,7 +10,7 @@ class _OrdersState extends State<Orders> {
   @override
   Widget build(BuildContext context) {
     return Container(
-          color:Colors.pink,
+
     );
   }
 }

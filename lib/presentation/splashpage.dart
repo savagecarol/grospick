@@ -6,12 +6,9 @@ import 'package:grospick/presentation/tabpages/profilepage.dart';
 import 'package:grospick/presentation/tabpages/home_page.dart';
 import 'package:grospick/presentation/tabpages/orders.dart';
 import 'package:grospick/presentation/tabpages/search.dart';
-import 'package:grospick/store/category_store.dart';
-import 'package:grospick/store/user_store.dart';
 
 import 'package:grospick/utils/global.dart';
 import 'package:grospick/utils/styles.dart';
-import 'package:provider/provider.dart';
 
 class SplashPage extends StatefulWidget {
   static const String routeNamed = 'SplashPage';
