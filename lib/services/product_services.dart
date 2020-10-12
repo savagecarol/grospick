@@ -11,24 +11,7 @@ class ProductService {
   static final ProductService _instance = ProductService._();
   Firestore _firestore = Firestore.instance;
 
-  // Future<Map<String, Product>> getProductList({String category}) async {
-  //   QuerySnapshot querySnapshot = await _firestore
-  //       .collection('products')
-  //       .where('category', whereIn: [category]).getDocuments();
-  //   Map<String, Product> productList = Map<String, Product>();
-  //   querySnapshot.documents.forEach((DocumentSnapshot documentSnapshot) {
-  //     if (documentSnapshot.data != null) {
-  //       documentSnapshot.data.remove('createdAt');
-  //       Product product =
-  //           Product.fromJson(jsonDecode(jsonEncode(documentSnapshot.data)));
-  //       if (product.id == null) product.id = documentSnapshot.documentID;
-  //       productList.addAll({product.id: product});
-  //     }
-  //   });
-  //   return productList;
-  // }
-
-  Future<Map<String, Product>> getProductList({String category}) async {
+  Future<Map<String, Product>> getProductList(String email) async {
     QuerySnapshot querySnapshot =
         await _firestore.collection('products').getDocuments();
     Map<String, Product> productList = Map<String, Product>();
@@ -36,22 +19,12 @@ class ProductService {
       if (documentSnapshot.data != null) {
         Product product =
             Product.fromJson(jsonDecode(jsonEncode(documentSnapshot.data)));
-        print(product);
         if (product.id == null) product.id = documentSnapshot.documentID;
-        productList.addAll({product.id: product});
+        if (product.email == email) productList.addAll({product.id: product});
       }
     });
-    print(productList);
     return productList;
   }
-
-  // Future<Product> getProduct({String category}) async {
-  //   DocumentSnapshot documentSnapshot =
-  //       await _firestore.collection('products').document('1596942573029').get();
-  //   Product p = Product.fromJson(documentSnapshot.data);
-  //   print(p);
-  //   return p;
-  // }
 
   Future<List> fetchCity(String a, String getter) async {
     List l;

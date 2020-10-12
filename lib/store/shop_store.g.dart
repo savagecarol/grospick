@@ -26,46 +26,70 @@ mixin _$ShopStore on _ShopStore, Store {
     }, _$isLoadingAtom, name: '${_$isLoadingAtom.name}_set');
   }
 
-  final _$isDataAtom = Atom(name: '_ShopStore.isData');
+  final _$isProductLoadingAtom = Atom(name: '_ShopStore.isProductLoading');
 
   @override
-  bool get isData {
-    _$isDataAtom.context.enforceReadPolicy(_$isDataAtom);
-    _$isDataAtom.reportObserved();
-    return super.isData;
+  bool get isProductLoading {
+    _$isProductLoadingAtom.context.enforceReadPolicy(_$isProductLoadingAtom);
+    _$isProductLoadingAtom.reportObserved();
+    return super.isProductLoading;
   }
 
   @override
-  set isData(bool value) {
-    _$isDataAtom.context.conditionallyRunInAction(() {
-      super.isData = value;
-      _$isDataAtom.reportChanged();
-    }, _$isDataAtom, name: '${_$isDataAtom.name}_set');
+  set isProductLoading(bool value) {
+    _$isProductLoadingAtom.context.conditionallyRunInAction(() {
+      super.isProductLoading = value;
+      _$isProductLoadingAtom.reportChanged();
+    }, _$isProductLoadingAtom, name: '${_$isProductLoadingAtom.name}_set');
   }
 
-  final _$shopMapAtom = Atom(name: '_ShopStore.shopMap');
+  final _$shopallAtom = Atom(name: '_ShopStore.shopall');
 
   @override
-  ObservableMap<String, Shop> get shopMap {
-    _$shopMapAtom.context.enforceReadPolicy(_$shopMapAtom);
-    _$shopMapAtom.reportObserved();
-    return super.shopMap;
+  ObservableMap<String, Map<String, Shop>> get shopall {
+    _$shopallAtom.context.enforceReadPolicy(_$shopallAtom);
+    _$shopallAtom.reportObserved();
+    return super.shopall;
   }
 
   @override
-  set shopMap(ObservableMap<String, Shop> value) {
-    _$shopMapAtom.context.conditionallyRunInAction(() {
-      super.shopMap = value;
-      _$shopMapAtom.reportChanged();
-    }, _$shopMapAtom, name: '${_$shopMapAtom.name}_set');
+  set shopall(ObservableMap<String, Map<String, Shop>> value) {
+    _$shopallAtom.context.conditionallyRunInAction(() {
+      super.shopall = value;
+      _$shopallAtom.reportChanged();
+    }, _$shopallAtom, name: '${_$shopallAtom.name}_set');
+  }
+
+  final _$productallAtom = Atom(name: '_ShopStore.productall');
+
+  @override
+  ObservableMap<String, Map<String, Product>> get productall {
+    _$productallAtom.context.enforceReadPolicy(_$productallAtom);
+    _$productallAtom.reportObserved();
+    return super.productall;
+  }
+
+  @override
+  set productall(ObservableMap<String, Map<String, Product>> value) {
+    _$productallAtom.context.conditionallyRunInAction(() {
+      super.productall = value;
+      _$productallAtom.reportChanged();
+    }, _$productallAtom, name: '${_$productallAtom.name}_set');
   }
 
   final _$fetchCategoryDocumentAsyncAction =
       AsyncAction('fetchCategoryDocument');
 
   @override
-  Future fetchCategoryDocument(String category) {
+  Future fetchCategoryDocument(String city, String category) {
     return _$fetchCategoryDocumentAsyncAction
-        .run(() => super.fetchCategoryDocument(category));
+        .run(() => super.fetchCategoryDocument(city, category));
+  }
+
+  final _$fetchProductAsyncAction = AsyncAction('fetchProduct');
+
+  @override
+  Future fetchProduct(String email) {
+    return _$fetchProductAsyncAction.run(() => super.fetchProduct(email));
   }
 }

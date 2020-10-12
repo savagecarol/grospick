@@ -11,6 +11,7 @@ import 'package:grospick/utils/global.dart';
 
 import 'package:grospick/utils/stringValues.dart';
 import 'package:grospick/utils/styles.dart';
+import 'package:provider/provider.dart';
 
 class MenuPage extends StatefulWidget {
   static const String routeNamed = 'menupage';
@@ -20,29 +21,17 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> {
-
-
-
-
-
-
-
-
-
-  @override
   _navigateToBackPage() {
     Navigator.pushNamed(context, SplashPage.routeNamed);
   }
 
-   
-    @override
-  _navigateToShopPage() {
-    Navigator.pushNamed(context, ShopPage.routeNamed);
+  _navigateToShopPage(int index,String email) async{
+      shop = index;
+          await Provider.of<ShopStore>(context)
+          .fetchProduct(email);
+
+     Navigator.pushNamed(context, ShopPage.routeNamed);
   }
-
-
-
-
 
 
   Widget build(BuildContext context) {
@@ -55,51 +44,55 @@ class _MenuPageState extends State<MenuPage> {
         child: Column(
           children: [
             SizedBox(height: ScreenUtil.instance.setHeight(32)),
-
-            Container(child:(page_index==2)?
-                         Container(
-                height: ScreenUtil.instance.setHeight(50),
-                child: StoreObserver<CategoryStore>(builder:
-                    (CategoryStore categoryStore, BuildContext conteext) {
-                  if (categoryStore.restaurant == null) {
-                    categoryStore.fetchRestaurant('restaurant', 'items');
-                    if (categoryStore.isRestaurantLoading == true) {
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                  }
-                  return ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: categoryStore.restaurant.length,
-                      itemBuilder: (context, index) {
-                        return Container(
-                            margin: EdgeInsets.only(
-                                left: ScreenUtil.instance.setWidth(10),
-                                right: ScreenUtil.instance.setHeight(10)),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                              color: Colors.white,
-                               border: Border.all(
-                                        width: 1,
-                                        color: Styles.APP_COLOR
-                                          ),
-
-                               ),
-                               
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 12),
-                              child: Center(
-                                  child: Text(categoryStore.restaurant[index],
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w400))),
-                            ));
-                      });
-                })
-                ):Container()
-          ),
-              Container(child:(page_index==2)?SizedBox(height: ScreenUtil.instance.setHeight(16)):Container()),
+            // Container(
+            //     child: (page_index == 2)
+            //         ? Container(
+            //             height: ScreenUtil.instance.setHeight(50),
+            //             child: StoreObserver<CategoryStore>(builder:
+            //                 (CategoryStore categoryStore,
+            //                     BuildContext conteext) {
+            //               if (categoryStore.restaurant == null) {
+            //                 categoryStore.fetchRestaurant(
+            //                     'restaurant', 'items');
+            //                 if (categoryStore.isRestaurantLoading == true) {
+            //                   return Center(
+            //                     child: CircularProgressIndicator(),
+            //                   );
+            //                 }
+            //               }
+            //               return ListView.builder(
+            //                   scrollDirection: Axis.horizontal,
+            //                   itemCount: categoryStore.restaurant.length,
+            //                   itemBuilder: (context, index) {
+            //                     return Container(
+            //                         margin: EdgeInsets.only(
+            //                             left: ScreenUtil.instance.setWidth(10),
+            //                             right:
+            //                                 ScreenUtil.instance.setHeight(10)),
+            //                         decoration: BoxDecoration(
+            //                           borderRadius: BorderRadius.circular(5),
+            //                           color: Colors.white,
+            //                           border: Border.all(
+            //                               width: 1, color: Styles.APP_COLOR),
+            //                         ),
+            //                         child: Padding(
+            //                           padding: const EdgeInsets.symmetric(
+            //                               horizontal: 12),
+            //                           child: Center(
+            //                               child: Text(
+            //                                   categoryStore.restaurant[index],
+            //                                   style: TextStyle(
+            //                                       fontSize: 14,
+            //                                       fontWeight:
+            //                                           FontWeight.w400))),
+            //                         ));
+            //                   });
+            //             }))
+            //         : Container()),
+            // Container(
+            //     child: (page_index == 2)
+            //         ? SizedBox(height: ScreenUtil.instance.setHeight(16))
+            //         : Container()),
             StoreObserver<ShopStore>(
                 builder: (ShopStore shopStore, BuildContext context) {
               if (shopStore.isLoading)
@@ -109,7 +102,8 @@ class _MenuPageState extends State<MenuPage> {
 
               if (shopStore.shopall[defaultCategory].length == 0)
                 return Container(
-                  height: ScreenUtil.instance.setHeight(( ScreenUtil.instance.height) / 1.8 ),
+                    height: ScreenUtil.instance
+                        .setHeight((ScreenUtil.instance.height) / 1.8),
                     child: Center(
                         child: Text(StringValues.NO_DATA_AVAILABLE,
                             style: TextStyle(
@@ -117,21 +111,36 @@ class _MenuPageState extends State<MenuPage> {
                                 fontWeight: FontWeight.w500,
                                 color: Colors.grey[700]))));
               else {
-                print(shopStore.shopall[defaultCategory].values
-                    .toList()[0]
-                    .image);
+
                 return Container(
-                    height: ScreenUtil.instance.setHeight(  (shopStore.shopall[defaultCategory].length).toDouble() * 220 ),
+                    height: ScreenUtil.instance.setHeight(
+                        (shopStore.shopall[defaultCategory].length).toDouble() *
+                            220),
+
                     child: ListView.builder(
                         itemCount: shopStore.shopall[defaultCategory].length,
                         itemBuilder: (context, index) {
                           return CustomShopCard(
-                        image: shopStore.shopall[defaultCategory].values .toList()[index].image,
-                        name: shopStore.shopall[defaultCategory].values .toList()[index].name,
-                        address: shopStore.shopall[defaultCategory].values .toList()[index].location,
-                        opentime: shopStore.shopall[defaultCategory].values .toList()[index].opentime,
-                        closetime: shopStore.shopall[defaultCategory].values .toList()[index].closetime,
-                        onTap: _navigateToShopPage,
+                            image: shopStore.shopall[defaultCategory].values
+                                .toList()[index]
+                                .image,
+                            name: shopStore.shopall[defaultCategory].values
+                                .toList()[index]
+                                .name,
+                            address: shopStore.shopall[defaultCategory].values
+                                .toList()[index]
+                                .location,
+                            opentime: shopStore.shopall[defaultCategory].values
+                                .toList()[index]
+                                .opentime,
+                            closetime: shopStore.shopall[defaultCategory].values
+                                .toList()[index]
+                                .closetime,
+                            onTap: () {
+                              _navigateToShopPage(index,shopStore.shopall[defaultCategory].values
+                                .toList()[index].email);
+
+                            },
                           );
                         }));
               }
@@ -142,4 +151,3 @@ class _MenuPageState extends State<MenuPage> {
     );
   }
 }
-

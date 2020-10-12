@@ -9,6 +9,8 @@ double defaultWidth = 414;
 var page_index;
 bool login_signin = true;
 String defaultCategory;
+int shop;
+
 final FirebaseAuthService firebaseAuthService =
     FirebaseAuthService.getInstance();
 final ProductService productService = ProductService.getInstance();

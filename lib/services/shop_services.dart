@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:grospick/models/product.dart';
+
 import 'package:grospick/models/shop.dart';
 
 class ShopService {
@@ -28,10 +28,11 @@ class ShopService {
   //   return productList;
   // }
 
-  Future<Map<String, Shop>> getCityCategoryCollection({String category}) async {
+  Future<Map<String, Shop>> getCityCategoryCollection(
+      String city, String category) async {
     QuerySnapshot querySnapshot = await _firestore
         .collection('city')
-        .document('Australia')
+        .document(city)
         .collection(category)
         .getDocuments();
     Map<String, Shop> shopList = Map<String, Shop>();
@@ -50,4 +51,8 @@ class ShopService {
     });
     return shopList;
   }
+
+ 
+ 
+  
 }

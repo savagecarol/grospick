@@ -17,16 +17,25 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  GoogleMapController mapController;
-  String _city;
+ 
+ String _city;
 
-  navigateToMenuPage(var i, String category) async {
+  navigateToMenuPage(var i, String city, String category) async {
     page_index = i;
-    print(page_index);
     defaultCategory = category;
-      await Provider.of<ShopStore>(context)
-         .fetchCategoryDocument(defaultCategory);
-    Navigator.pushNamed(context, MenuPage.routeNamed);
+     await Provider.of<ShopStore>(context)
+          .fetchCategoryDocument('Australia', defaultCategory);
+      Navigator.pushNamed(context, MenuPage.routeNamed);
+
+    
+
+    // if (city != null) {
+    //    await Provider.of<ShopStore>(context)
+    //       .fetchCategoryDocument(city, defaultCategory);
+    //   Navigator.pushNamed(context, MenuPage.routeNamed);     
+    // } else {
+    //   return showSnackbar('Choose City', context);
+    // }
   }
 
   @override
@@ -46,7 +55,6 @@ class _HomePageState extends State<HomePage> {
           .fetchRestaurant('restaurant', 'items');
       await Provider.of<CategoryStore>(context)
           .fetchCity('Australia', 'cityname');
-       
     }
   }
 
@@ -62,11 +70,12 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.symmetric(horizontal: 32),
                   child: CustomTextField(
                     size: true,
-                    hintText: 'Search For Store And product',
-                    icon: Icons.search,
                     isPrefixIcon: true,
+                    hintText: 'Search For City',
+                    icon: Icons.search,
+                    validator: requiredString,
                     onSaved: (value) {
-                      return _city = value;
+                     return _city = value;
                     },
                   ),
                 ),
@@ -133,8 +142,10 @@ class _HomePageState extends State<HomePage> {
                                     image: p,
                                     onTap: () {
                                       page_index = i;
-                                      navigateToMenuPage(
-                                          i, categoryStore.categoryMap[i]);
+                                      print(_city);
+
+                                      navigateToMenuPage(i, _city,
+                                          categoryStore.categoryMap[i]);
                                     },
                                   );
                                 }),

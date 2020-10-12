@@ -24,58 +24,17 @@ abstract class _Product with Store {
   @observable
   List description;
 
-
-   @observable
-  String description2;
-
-   @observable
-  String description3;
-
-   @observable
-  String description4;
-
    @observable
  String discount;
 
-    @observable
- String discount1;
-
-    @observable
- String discount2;
-
-    @observable
- String discount3;
-
-     @observable
- String discount4;
-
+   @observable
+ String email;
 
   @observable
   List image;
 
-    @observable
- String image2;
-
-   @observable
- String image3;
-
-   @observable
- String image4;
-
-
   @observable
   List mrp;
-
-    @observable
-  String mrp2;
-
-  @observable
-  String mrp3;
-
-  @observable
-  String mrp4;
-
-
 
 @observable
   String name;
@@ -86,37 +45,24 @@ abstract class _Product with Store {
   @observable
   List price;
 
-   @observable
-  String price2;
-
-   @observable
-  String price3;
-
-   @observable
-  String price4;
 
    @observable
   bool show;
 
+
   @observable
   List stock;
 
-  
-  @observable
-  String stock2;
 
   @observable
-  String stock3;
+  String sub_category;
 
   @observable
-  String stock4;
+  String super_category;
 
-  @observable
-  String subcategory;
-
-  @observable
-  String supercategory;
-
-   @observable
+    @observable
   int variant;
+
+    @observable
+  String vendorName;
 }

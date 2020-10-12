@@ -1,6 +1,6 @@
 // import 'package:grospick/models/category.dart';
 import 'package:grospick/models/shop.dart';
-
+import 'package:grospick/models/product.dart';
 import 'package:grospick/utils/global.dart';
 import 'package:mobx/mobx.dart';
 
@@ -13,26 +13,45 @@ abstract class _ShopStore with Store {
   bool isLoading = false;
 
   @observable
-  bool isData = true;
+  bool isProductLoading = false;
+
+  
+
 
   @observable
   ObservableMap<String, Map<String, Shop>> shopall =
       ObservableMap<String, Map<String, Shop>>();
 
   @observable
-  ObservableMap<String, Shop> shopMap = ObservableMap<String, Shop>();
+  ObservableMap<String, Map<String, Product>> productall =
+      ObservableMap<String, Map<String, Product>>();
 
   @action
-  fetchCategoryDocument(String category) async {
+  fetchCategoryDocument(String city, String category) async {
     try {
       isLoading = true;
-      isData = false;
       Map<String, Shop> response =
-          await shopService.getCityCategoryCollection(category: category);
+          await shopService.getCityCategoryCollection(city, category);
       shopall.addAll({category: response});
       isLoading = false;
     } catch (e) {
       throw e;
     }
   }
+
+  @action
+  fetchProduct(String email) async {
+    try {
+      isProductLoading = true;
+      Map<String, Product> response =
+          await productService.getProductList(email);
+      productall.addAll({email: response});
+      print(productall);
+      isProductLoading = false;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  
 }

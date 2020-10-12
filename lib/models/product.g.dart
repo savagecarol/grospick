@@ -12,36 +12,19 @@ Product _$ProductFromJson(Map<String, dynamic> json) {
     ..category = json['category'] as String
     ..city = json['city'] as String
     ..description = json['description'] as List
-    ..description2 = json['description2'] as String
-    ..description3 = json['description3'] as String
-    ..description4 = json['description4'] as String
     ..discount = json['discount'] as String
-    ..discount1 = json['discount1'] as String
-    ..discount2 = json['discount2'] as String
-    ..discount3 = json['discount3'] as String
-    ..discount4 = json['discount4'] as String
+    ..email = json['email'] as String
     ..image = json['image'] as List
-    ..image2 = json['image2'] as String
-    ..image3 = json['image3'] as String
-    ..image4 = json['image4'] as String
     ..mrp = json['mrp'] as List
-    ..mrp2 = json['mrp2'] as String
-    ..mrp3 = json['mrp3'] as String
-    ..mrp4 = json['mrp4'] as String
     ..name = json['name'] as String
     ..pid = json['pid'] as String
     ..price = json['price'] as List
-    ..price2 = json['price2'] as String
-    ..price3 = json['price3'] as String
-    ..price4 = json['price4'] as String
     ..show = json['show'] as bool
     ..stock = json['stock'] as List
-    ..stock2 = json['stock2'] as String
-    ..stock3 = json['stock3'] as String
-    ..stock4 = json['stock4'] as String
-    ..subcategory = json['subcategory'] as String
-    ..supercategory = json['supercategory'] as String
-    ..variant = json['variant'] as int;
+    ..sub_category = json['sub_category'] as String
+    ..super_category = json['super_category'] as String
+    ..variant = json['variant'] as int
+    ..vendorName = json['vendorName'] as String;
 }
 
 Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
@@ -49,36 +32,19 @@ Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
       'category': instance.category,
       'city': instance.city,
       'description': instance.description,
-      'description2': instance.description2,
-      'description3': instance.description3,
-      'description4': instance.description4,
       'discount': instance.discount,
-      'discount1': instance.discount1,
-      'discount2': instance.discount2,
-      'discount3': instance.discount3,
-      'discount4': instance.discount4,
+      'email': instance.email,
       'image': instance.image,
-      'image2': instance.image2,
-      'image3': instance.image3,
-      'image4': instance.image4,
       'mrp': instance.mrp,
-      'mrp2': instance.mrp2,
-      'mrp3': instance.mrp3,
-      'mrp4': instance.mrp4,
       'name': instance.name,
       'pid': instance.pid,
       'price': instance.price,
-      'price2': instance.price2,
-      'price3': instance.price3,
-      'price4': instance.price4,
       'show': instance.show,
       'stock': instance.stock,
-      'stock2': instance.stock2,
-      'stock3': instance.stock3,
-      'stock4': instance.stock4,
-      'subcategory': instance.subcategory,
-      'supercategory': instance.supercategory,
+      'sub_category': instance.sub_category,
+      'super_category': instance.super_category,
       'variant': instance.variant,
+      'vendorName': instance.vendorName,
     };
 
 // **************************************************************************
@@ -156,57 +122,6 @@ mixin _$Product on _Product, Store {
     }, _$descriptionAtom, name: '${_$descriptionAtom.name}_set');
   }
 
-  final _$description2Atom = Atom(name: '_Product.description2');
-
-  @override
-  String get description2 {
-    _$description2Atom.context.enforceReadPolicy(_$description2Atom);
-    _$description2Atom.reportObserved();
-    return super.description2;
-  }
-
-  @override
-  set description2(String value) {
-    _$description2Atom.context.conditionallyRunInAction(() {
-      super.description2 = value;
-      _$description2Atom.reportChanged();
-    }, _$description2Atom, name: '${_$description2Atom.name}_set');
-  }
-
-  final _$description3Atom = Atom(name: '_Product.description3');
-
-  @override
-  String get description3 {
-    _$description3Atom.context.enforceReadPolicy(_$description3Atom);
-    _$description3Atom.reportObserved();
-    return super.description3;
-  }
-
-  @override
-  set description3(String value) {
-    _$description3Atom.context.conditionallyRunInAction(() {
-      super.description3 = value;
-      _$description3Atom.reportChanged();
-    }, _$description3Atom, name: '${_$description3Atom.name}_set');
-  }
-
-  final _$description4Atom = Atom(name: '_Product.description4');
-
-  @override
-  String get description4 {
-    _$description4Atom.context.enforceReadPolicy(_$description4Atom);
-    _$description4Atom.reportObserved();
-    return super.description4;
-  }
-
-  @override
-  set description4(String value) {
-    _$description4Atom.context.conditionallyRunInAction(() {
-      super.description4 = value;
-      _$description4Atom.reportChanged();
-    }, _$description4Atom, name: '${_$description4Atom.name}_set');
-  }
-
   final _$discountAtom = Atom(name: '_Product.discount');
 
   @override
@@ -224,72 +139,21 @@ mixin _$Product on _Product, Store {
     }, _$discountAtom, name: '${_$discountAtom.name}_set');
   }
 
-  final _$discount1Atom = Atom(name: '_Product.discount1');
+  final _$emailAtom = Atom(name: '_Product.email');
 
   @override
-  String get discount1 {
-    _$discount1Atom.context.enforceReadPolicy(_$discount1Atom);
-    _$discount1Atom.reportObserved();
-    return super.discount1;
+  String get email {
+    _$emailAtom.context.enforceReadPolicy(_$emailAtom);
+    _$emailAtom.reportObserved();
+    return super.email;
   }
 
   @override
-  set discount1(String value) {
-    _$discount1Atom.context.conditionallyRunInAction(() {
-      super.discount1 = value;
-      _$discount1Atom.reportChanged();
-    }, _$discount1Atom, name: '${_$discount1Atom.name}_set');
-  }
-
-  final _$discount2Atom = Atom(name: '_Product.discount2');
-
-  @override
-  String get discount2 {
-    _$discount2Atom.context.enforceReadPolicy(_$discount2Atom);
-    _$discount2Atom.reportObserved();
-    return super.discount2;
-  }
-
-  @override
-  set discount2(String value) {
-    _$discount2Atom.context.conditionallyRunInAction(() {
-      super.discount2 = value;
-      _$discount2Atom.reportChanged();
-    }, _$discount2Atom, name: '${_$discount2Atom.name}_set');
-  }
-
-  final _$discount3Atom = Atom(name: '_Product.discount3');
-
-  @override
-  String get discount3 {
-    _$discount3Atom.context.enforceReadPolicy(_$discount3Atom);
-    _$discount3Atom.reportObserved();
-    return super.discount3;
-  }
-
-  @override
-  set discount3(String value) {
-    _$discount3Atom.context.conditionallyRunInAction(() {
-      super.discount3 = value;
-      _$discount3Atom.reportChanged();
-    }, _$discount3Atom, name: '${_$discount3Atom.name}_set');
-  }
-
-  final _$discount4Atom = Atom(name: '_Product.discount4');
-
-  @override
-  String get discount4 {
-    _$discount4Atom.context.enforceReadPolicy(_$discount4Atom);
-    _$discount4Atom.reportObserved();
-    return super.discount4;
-  }
-
-  @override
-  set discount4(String value) {
-    _$discount4Atom.context.conditionallyRunInAction(() {
-      super.discount4 = value;
-      _$discount4Atom.reportChanged();
-    }, _$discount4Atom, name: '${_$discount4Atom.name}_set');
+  set email(String value) {
+    _$emailAtom.context.conditionallyRunInAction(() {
+      super.email = value;
+      _$emailAtom.reportChanged();
+    }, _$emailAtom, name: '${_$emailAtom.name}_set');
   }
 
   final _$imageAtom = Atom(name: '_Product.image');
@@ -309,57 +173,6 @@ mixin _$Product on _Product, Store {
     }, _$imageAtom, name: '${_$imageAtom.name}_set');
   }
 
-  final _$image2Atom = Atom(name: '_Product.image2');
-
-  @override
-  String get image2 {
-    _$image2Atom.context.enforceReadPolicy(_$image2Atom);
-    _$image2Atom.reportObserved();
-    return super.image2;
-  }
-
-  @override
-  set image2(String value) {
-    _$image2Atom.context.conditionallyRunInAction(() {
-      super.image2 = value;
-      _$image2Atom.reportChanged();
-    }, _$image2Atom, name: '${_$image2Atom.name}_set');
-  }
-
-  final _$image3Atom = Atom(name: '_Product.image3');
-
-  @override
-  String get image3 {
-    _$image3Atom.context.enforceReadPolicy(_$image3Atom);
-    _$image3Atom.reportObserved();
-    return super.image3;
-  }
-
-  @override
-  set image3(String value) {
-    _$image3Atom.context.conditionallyRunInAction(() {
-      super.image3 = value;
-      _$image3Atom.reportChanged();
-    }, _$image3Atom, name: '${_$image3Atom.name}_set');
-  }
-
-  final _$image4Atom = Atom(name: '_Product.image4');
-
-  @override
-  String get image4 {
-    _$image4Atom.context.enforceReadPolicy(_$image4Atom);
-    _$image4Atom.reportObserved();
-    return super.image4;
-  }
-
-  @override
-  set image4(String value) {
-    _$image4Atom.context.conditionallyRunInAction(() {
-      super.image4 = value;
-      _$image4Atom.reportChanged();
-    }, _$image4Atom, name: '${_$image4Atom.name}_set');
-  }
-
   final _$mrpAtom = Atom(name: '_Product.mrp');
 
   @override
@@ -375,57 +188,6 @@ mixin _$Product on _Product, Store {
       super.mrp = value;
       _$mrpAtom.reportChanged();
     }, _$mrpAtom, name: '${_$mrpAtom.name}_set');
-  }
-
-  final _$mrp2Atom = Atom(name: '_Product.mrp2');
-
-  @override
-  String get mrp2 {
-    _$mrp2Atom.context.enforceReadPolicy(_$mrp2Atom);
-    _$mrp2Atom.reportObserved();
-    return super.mrp2;
-  }
-
-  @override
-  set mrp2(String value) {
-    _$mrp2Atom.context.conditionallyRunInAction(() {
-      super.mrp2 = value;
-      _$mrp2Atom.reportChanged();
-    }, _$mrp2Atom, name: '${_$mrp2Atom.name}_set');
-  }
-
-  final _$mrp3Atom = Atom(name: '_Product.mrp3');
-
-  @override
-  String get mrp3 {
-    _$mrp3Atom.context.enforceReadPolicy(_$mrp3Atom);
-    _$mrp3Atom.reportObserved();
-    return super.mrp3;
-  }
-
-  @override
-  set mrp3(String value) {
-    _$mrp3Atom.context.conditionallyRunInAction(() {
-      super.mrp3 = value;
-      _$mrp3Atom.reportChanged();
-    }, _$mrp3Atom, name: '${_$mrp3Atom.name}_set');
-  }
-
-  final _$mrp4Atom = Atom(name: '_Product.mrp4');
-
-  @override
-  String get mrp4 {
-    _$mrp4Atom.context.enforceReadPolicy(_$mrp4Atom);
-    _$mrp4Atom.reportObserved();
-    return super.mrp4;
-  }
-
-  @override
-  set mrp4(String value) {
-    _$mrp4Atom.context.conditionallyRunInAction(() {
-      super.mrp4 = value;
-      _$mrp4Atom.reportChanged();
-    }, _$mrp4Atom, name: '${_$mrp4Atom.name}_set');
   }
 
   final _$nameAtom = Atom(name: '_Product.name');
@@ -479,57 +241,6 @@ mixin _$Product on _Product, Store {
     }, _$priceAtom, name: '${_$priceAtom.name}_set');
   }
 
-  final _$price2Atom = Atom(name: '_Product.price2');
-
-  @override
-  String get price2 {
-    _$price2Atom.context.enforceReadPolicy(_$price2Atom);
-    _$price2Atom.reportObserved();
-    return super.price2;
-  }
-
-  @override
-  set price2(String value) {
-    _$price2Atom.context.conditionallyRunInAction(() {
-      super.price2 = value;
-      _$price2Atom.reportChanged();
-    }, _$price2Atom, name: '${_$price2Atom.name}_set');
-  }
-
-  final _$price3Atom = Atom(name: '_Product.price3');
-
-  @override
-  String get price3 {
-    _$price3Atom.context.enforceReadPolicy(_$price3Atom);
-    _$price3Atom.reportObserved();
-    return super.price3;
-  }
-
-  @override
-  set price3(String value) {
-    _$price3Atom.context.conditionallyRunInAction(() {
-      super.price3 = value;
-      _$price3Atom.reportChanged();
-    }, _$price3Atom, name: '${_$price3Atom.name}_set');
-  }
-
-  final _$price4Atom = Atom(name: '_Product.price4');
-
-  @override
-  String get price4 {
-    _$price4Atom.context.enforceReadPolicy(_$price4Atom);
-    _$price4Atom.reportObserved();
-    return super.price4;
-  }
-
-  @override
-  set price4(String value) {
-    _$price4Atom.context.conditionallyRunInAction(() {
-      super.price4 = value;
-      _$price4Atom.reportChanged();
-    }, _$price4Atom, name: '${_$price4Atom.name}_set');
-  }
-
   final _$showAtom = Atom(name: '_Product.show');
 
   @override
@@ -564,89 +275,38 @@ mixin _$Product on _Product, Store {
     }, _$stockAtom, name: '${_$stockAtom.name}_set');
   }
 
-  final _$stock2Atom = Atom(name: '_Product.stock2');
+  final _$sub_categoryAtom = Atom(name: '_Product.sub_category');
 
   @override
-  String get stock2 {
-    _$stock2Atom.context.enforceReadPolicy(_$stock2Atom);
-    _$stock2Atom.reportObserved();
-    return super.stock2;
+  String get sub_category {
+    _$sub_categoryAtom.context.enforceReadPolicy(_$sub_categoryAtom);
+    _$sub_categoryAtom.reportObserved();
+    return super.sub_category;
   }
 
   @override
-  set stock2(String value) {
-    _$stock2Atom.context.conditionallyRunInAction(() {
-      super.stock2 = value;
-      _$stock2Atom.reportChanged();
-    }, _$stock2Atom, name: '${_$stock2Atom.name}_set');
+  set sub_category(String value) {
+    _$sub_categoryAtom.context.conditionallyRunInAction(() {
+      super.sub_category = value;
+      _$sub_categoryAtom.reportChanged();
+    }, _$sub_categoryAtom, name: '${_$sub_categoryAtom.name}_set');
   }
 
-  final _$stock3Atom = Atom(name: '_Product.stock3');
+  final _$super_categoryAtom = Atom(name: '_Product.super_category');
 
   @override
-  String get stock3 {
-    _$stock3Atom.context.enforceReadPolicy(_$stock3Atom);
-    _$stock3Atom.reportObserved();
-    return super.stock3;
-  }
-
-  @override
-  set stock3(String value) {
-    _$stock3Atom.context.conditionallyRunInAction(() {
-      super.stock3 = value;
-      _$stock3Atom.reportChanged();
-    }, _$stock3Atom, name: '${_$stock3Atom.name}_set');
-  }
-
-  final _$stock4Atom = Atom(name: '_Product.stock4');
-
-  @override
-  String get stock4 {
-    _$stock4Atom.context.enforceReadPolicy(_$stock4Atom);
-    _$stock4Atom.reportObserved();
-    return super.stock4;
+  String get super_category {
+    _$super_categoryAtom.context.enforceReadPolicy(_$super_categoryAtom);
+    _$super_categoryAtom.reportObserved();
+    return super.super_category;
   }
 
   @override
-  set stock4(String value) {
-    _$stock4Atom.context.conditionallyRunInAction(() {
-      super.stock4 = value;
-      _$stock4Atom.reportChanged();
-    }, _$stock4Atom, name: '${_$stock4Atom.name}_set');
-  }
-
-  final _$subcategoryAtom = Atom(name: '_Product.subcategory');
-
-  @override
-  String get subcategory {
-    _$subcategoryAtom.context.enforceReadPolicy(_$subcategoryAtom);
-    _$subcategoryAtom.reportObserved();
-    return super.subcategory;
-  }
-
-  @override
-  set subcategory(String value) {
-    _$subcategoryAtom.context.conditionallyRunInAction(() {
-      super.subcategory = value;
-      _$subcategoryAtom.reportChanged();
-    }, _$subcategoryAtom, name: '${_$subcategoryAtom.name}_set');
-  }
-
-  final _$supercategoryAtom = Atom(name: '_Product.supercategory');
-
-  @override
-  String get supercategory {
-    _$supercategoryAtom.context.enforceReadPolicy(_$supercategoryAtom);
-    _$supercategoryAtom.reportObserved();
-    return super.supercategory;
-  }
-
-  @override
-  set supercategory(String value) {
-    _$supercategoryAtom.context.conditionallyRunInAction(() {
-      super.supercategory = value;
-      _$supercategoryAtom.reportChanged();
-    }, _$supercategoryAtom, name: '${_$supercategoryAtom.name}_set');
+  set super_category(String value) {
+    _$super_categoryAtom.context.conditionallyRunInAction(() {
+      super.super_category = value;
+      _$super_categoryAtom.reportChanged();
+    }, _$super_categoryAtom, name: '${_$super_categoryAtom.name}_set');
   }
 
   final _$variantAtom = Atom(name: '_Product.variant');
@@ -664,5 +324,22 @@ mixin _$Product on _Product, Store {
       super.variant = value;
       _$variantAtom.reportChanged();
     }, _$variantAtom, name: '${_$variantAtom.name}_set');
+  }
+
+  final _$vendorNameAtom = Atom(name: '_Product.vendorName');
+
+  @override
+  String get vendorName {
+    _$vendorNameAtom.context.enforceReadPolicy(_$vendorNameAtom);
+    _$vendorNameAtom.reportObserved();
+    return super.vendorName;
+  }
+
+  @override
+  set vendorName(String value) {
+    _$vendorNameAtom.context.conditionallyRunInAction(() {
+      super.vendorName = value;
+      _$vendorNameAtom.reportChanged();
+    }, _$vendorNameAtom, name: '${_$vendorNameAtom.name}_set');
   }
 }
