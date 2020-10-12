@@ -25,4 +25,6 @@ abstract class StringValues {
   static const NAME = 'name';
   static const ALREADY_HAVE_AN_ACCOUNT = 'Already have an Account';
   static const CREATE_A_NEW_ACCOUNT = 'Create a new Account';
+
+  static const NO_DATA_AVAILABLE = "No Data Available";
 }

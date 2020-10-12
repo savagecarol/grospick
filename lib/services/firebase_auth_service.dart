@@ -46,7 +46,7 @@ class FirebaseAuthService {
         print(e.message);
       }
     } catch (e) {
-      print("error in signout");
+      print("error in sending mail");
       print(e);
       return "error";
     }

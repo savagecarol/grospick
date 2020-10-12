@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:grospick/services/firebase_auth_service.dart';
 import 'package:grospick/services/preference_services.dart';
 import 'package:grospick/services/product_services.dart';
+import 'package:grospick/services/shop_services.dart';
 
 double defaultHeight = 896;
 double defaultWidth = 414;
 var page_index;
-bool login_signin=true;
+bool login_signin = true;
+String defaultCategory;
 final FirebaseAuthService firebaseAuthService =
     FirebaseAuthService.getInstance();
 final ProductService productService = ProductService.getInstance();
+final ShopService shopService = ShopService.getInstance();
 final PreferenceService preferenceService = PreferenceService.getInstance();
 
 final formKey = new GlobalKey<FormState>();

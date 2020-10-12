@@ -27,6 +27,7 @@ class ProductService {
   //   });
   //   return productList;
   // }
+
   Future<Map<String, Product>> getProductList({String category}) async {
     QuerySnapshot querySnapshot =
         await _firestore.collection('products').getDocuments();
@@ -40,16 +41,17 @@ class ProductService {
         productList.addAll({product.id: product});
       }
     });
+    print(productList);
     return productList;
   }
 
-  Future<Product> getProduct({String category}) async {
-    DocumentSnapshot documentSnapshot =
-        await _firestore.collection('products').document('1596942573029').get();
-    Product p = Product.fromJson(documentSnapshot.data);
-    print(p);
-    return p;
-  }
+  // Future<Product> getProduct({String category}) async {
+  //   DocumentSnapshot documentSnapshot =
+  //       await _firestore.collection('products').document('1596942573029').get();
+  //   Product p = Product.fromJson(documentSnapshot.data);
+  //   print(p);
+  //   return p;
+  // }
 
   Future<List> fetchCity(String a, String getter) async {
     List l;

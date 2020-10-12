@@ -215,7 +215,7 @@ class _EmailAuthPageState extends State<EmailAuthPage> {
 
                                             if (userStore.isLoading == false) {
                                               return showSnackbar(
-                                                  'Email Sent to Your Account',
+                                                  'Email Sent to Your Account .',
                                                   context);
 
                                             } else {

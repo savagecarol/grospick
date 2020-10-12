@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grospick/models/store_observer.dart';
 import 'package:grospick/presentation/custom/custom_image.dart';
 import 'package:grospick/presentation/splashpage.dart';
+import 'package:grospick/services/shop_services.dart';
 import 'package:grospick/store/user_store.dart';
 import 'package:grospick/utils/global.dart';
 import 'package:grospick/utils/stringValues.dart';
@@ -19,8 +20,7 @@ class _FirstPageState extends State<FirstPage> {
   @override
   void initState() {
     super.initState();
-    // //  productService.getProductList();
-    // productService.getProduct();
+
     Timer(Duration(seconds: 3), () {
       _navigateToHomePage();
     });
