@@ -17,22 +17,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
- 
- String _city;
+  String _city;
 
-  navigateToMenuPage(var i, String city, String category) async {
+  navigateToMenuPage(var i, String category){
     page_index = i;
     defaultCategory = category;
-     await Provider.of<ShopStore>(context)
-          .fetchCategoryDocument('Australia', defaultCategory);
-      Navigator.pushNamed(context, MenuPage.routeNamed);
-
-    
+    Navigator.pushNamed(context, MenuPage.routeNamed);
 
     // if (city != null) {
     //    await Provider.of<ShopStore>(context)
     //       .fetchCategoryDocument(city, defaultCategory);
-    //   Navigator.pushNamed(context, MenuPage.routeNamed);     
+    //   Navigator.pushNamed(context, MenuPage.routeNamed);
     // } else {
     //   return showSnackbar('Choose City', context);
     // }
@@ -75,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                     icon: Icons.search,
                     validator: requiredString,
                     onSaved: (value) {
-                     return _city = value;
+                      return _city = value;
                     },
                   ),
                 ),
@@ -84,7 +79,6 @@ class _HomePageState extends State<HomePage> {
                     (CategoryStore categoryStore, BuildContext conteext) {
                   if (categoryStore.categoryMap == null)
                     categoryStore.fetchCategorties('categories', 'items');
-
                   if (categoryStore.isCategoryLoading)
                     return Center(
                       child: CircularProgressIndicator(),
@@ -93,60 +87,91 @@ class _HomePageState extends State<HomePage> {
                       child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16),
                           child: Container(
-                            height: 4 * ScreenUtil.instance.setHeight(150),
+                            height: 4 * ScreenUtil.instance.setHeight(155),
                             width: ScreenUtil.instance
                                 .setWidth(ScreenUtil.instance.width),
-                            child: GridView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: categoryStore.categoryMap.length,
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 4,
-                                  mainAxisSpacing: 12,
-                                  crossAxisSpacing: 16,
-                                  childAspectRatio: .64,
-                                ),
-                                itemBuilder: (context, i) {
+                            child: ListView.builder(
+                                scrollDirection: Axis.vertical,
+                                itemCount:
+                                    (categoryStore.categoryMap.length / 2)
+                                        .toInt(),
+                                itemBuilder: (context, k) {
+                                  int i;
+                                  int j;
+                                  if (k == 0) {
+                                    i = 0;
+                                    j = 1;
+                                  }
+                                  if (k == 1) {
+                                    i = 2;
+                                    j = 3;
+                                  }
+                                  if (k == 2) {
+                                    i = 4;
+                                    j = 5;
+                                  }
+                                  if (k == 3) {
+                                    i = 6;
+                                    j = 7;
+                                  }
                                   String p = 'assets/';
+                                  String q = 'assets/';
                                   if (categoryStore.categoryMap[i] ==
                                       'Grocery') {
                                     p = p + 'groceries.png';
                                   }
-                                  if (categoryStore.categoryMap[i] ==
+                                  if (categoryStore.categoryMap[j] ==
                                       'Medicine') {
-                                    p = p + 'medicine.png';
+                                    q = q + 'medicine.png';
                                   }
                                   if (categoryStore.categoryMap[i] ==
                                       'Restaurant') {
                                     p = p + 'food.png';
                                   }
-                                  if (categoryStore.categoryMap[i] == 'Food') {
-                                    p = p + 'food.png';
-                                  }
-                                  if (categoryStore.categoryMap[i] ==
+                                  if (categoryStore.categoryMap[j] ==
                                       'Liquor') {
-                                    p = p + 'liquor.png';
+                                    q = q + 'liquor.png';
                                   }
                                   if (categoryStore.categoryMap[i] ==
                                       'Laundry') {
                                     p = p + 'laundry.png';
                                   }
-                                  if (categoryStore.categoryMap[i] == 'Pets') {
-                                    p = p + 'pet.png';
+                                  if (categoryStore.categoryMap[j] == 'Pets') {
+                                    q = q + 'pet.png';
                                   }
                                   if (categoryStore.categoryMap[i] ==
                                       'Vegetables') {
                                     p = p + 'fruits.png';
                                   }
-                                  return CustomCategoryContainer(
-                                    image: p,
-                                    onTap: () {
-                                      page_index = i;
-                                      print(_city);
-
-                                      navigateToMenuPage(i, _city,
-                                          categoryStore.categoryMap[i]);
-                                    },
+                                  if (categoryStore.categoryMap[j] == 'Meat') {
+                                    q = q + 'meat.png';
+                                  }
+                                  return Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Container(
+                                        child: CustomCategoryContainer(
+                                          image: p,
+                                          onTap: () {
+                                            page_index = i;
+                                            navigateToMenuPage(i,
+                                                categoryStore.categoryMap[i]);
+                                          },
+                                        ),
+                                      ),
+                                      Container(
+                                        child: CustomCategoryContainer(
+                                          image: q,
+                                          onTap: () {
+                                            page_index = j;
+                                            print(_city);
+                                            navigateToMenuPage(j,
+                                                categoryStore.categoryMap[j]);
+                                          },
+                                        ),
+                                      ),
+                                    ],
                                   );
                                 }),
                           )));

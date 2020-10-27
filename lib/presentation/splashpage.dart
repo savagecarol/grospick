@@ -6,7 +6,6 @@ import 'package:grospick/presentation/tabpages/profilepage.dart';
 import 'package:grospick/presentation/tabpages/home_page.dart';
 import 'package:grospick/presentation/tabpages/orders.dart';
 import 'package:grospick/presentation/tabpages/search.dart';
-
 import 'package:grospick/utils/global.dart';
 import 'package:grospick/utils/styles.dart';
 

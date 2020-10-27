@@ -14,7 +14,9 @@ class CustomCategoryContainer extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: ScreenUtil.instance.setWidth(ScreenUtil.instance.width),
+        margin: EdgeInsets.only(bottom: ScreenUtil.instance.setHeight(16)),
+        height: ScreenUtil.instance.setHeight(140),
+         width: ScreenUtil.instance.setWidth((ScreenUtil.instance.width)/2.4),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
             color: Colors.white,
